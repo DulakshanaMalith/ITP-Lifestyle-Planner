@@ -4,7 +4,7 @@ const cors = require('cors');
 
 
 const userRoutes = require('./routes/userRoutes');
-const router=require("./routes/1MeetAssistRoutes");
+const router=require("./routes/MeetAssistRoutes");
 
 const app = express();
 const bodyParser = require('body-parser');
