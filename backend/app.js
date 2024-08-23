@@ -1,22 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('./scheduler');
-const { MONGO_URI } = require('./config');
+
+
 const userRoutes = require('./routes/userRoutes');
-const incomeRoutes = require('./routes/incomeRoutes');
-const goalRoutes = require('./routes/goalRoutes');
+const router=require("./routes/MeetAssistRoutes");
 
 const app = express();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
 app.use('/api/users', userRoutes);
-app.use('/api/income', incomeRoutes);
-app.use('/api/goals', goalRoutes); 
+app.use("/meet",router);
 
-mongoose.connect(MONGO_URI)
+
+mongoose.connect("mongodb+srv://chamilasewmini2:CScs2436@portfolio.kr18ftg.mongodb.net/")
   .then(() => console.log('Connected to MongoDB'))
   .then(() => {
     app.listen(5000, () => console.log('Server running on port 5000'));
