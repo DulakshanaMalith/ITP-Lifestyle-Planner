@@ -25,7 +25,11 @@ const vehicleRoute = require('./routes/VehicleRoute');
 const occasionRoutes = require('./routes/OccasionRoute');
 const hospitalTasksRouter = require('./routes/hospitalTasksRoute');
 
-
+//eventPlanner
+const eventsRoutes = require("./routes/eventRoutes");
+const CreateItineraryRoute = require("./routes/CreateItineraryRoute");
+const activityRoutes = require("./routes/activityRoutes");
+const expensesRoutes = require("./routes/expensesRoutes")
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -52,7 +56,11 @@ app.use('/api/service-stations', serviceStationRoutes);
 app.use('/income', incomeRoutes);
 app.use('/goals', goalRoutes); 
 
-
+//eventPlanner
+app.use('/api', eventsRoutes);
+app.use('/api',CreateItineraryRoute);
+app.use('/api', activityRoutes);
+app.use('/api', expensesRoutes);
 
 //shop smart
 app.use("/todos", todoRoutes);
@@ -61,6 +69,8 @@ app.use('/meetings', MeetingRoute);
 app.use("/vehicles", vehicleRoute);
 app.use('/occasions', occasionRoutes);
 app.use('/hospitals', hospitalTasksRouter);
+
+
 //finance-guard
 /*app.get('/api/rates', async (req, res) => {
   try {
