@@ -12,9 +12,18 @@ const router=require("./routes/MeetAssistRoutes");
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
 const serviceStationRoutes = require('./routes/serviceStationRoutes');
+
+//finance guard
 const incomeRoutes = require('./routes/incomeRoutes');
 const goalRoutes = require('./routes/goalRoutes');
 
+//shop smart
+const todoRoutes = require("./routes/TodoRoute");
+const eventRoutes = require('./routes/EventRoute');
+const MeetingRoute = require('./routes/MeetingRoute');
+const vehicleRoute = require('./routes/VehicleRoute');
+const occasionRoutes = require('./routes/OccasionRoute');
+const hospitalTasksRouter = require('./routes/hospitalTasksRoute');
 
 
 
@@ -42,6 +51,16 @@ app.use('/api/service-stations', serviceStationRoutes);
 //finance guard
 app.use('/income', incomeRoutes);
 app.use('/goals', goalRoutes); 
+
+
+
+//shop smart
+app.use("/todos", todoRoutes);
+app.use("/events", eventRoutes); 
+app.use('/meetings', MeetingRoute);
+app.use("/vehicles", vehicleRoute);
+app.use('/occasions', occasionRoutes);
+app.use('/hospitals', hospitalTasksRouter);
 //finance-guard
 /*app.get('/api/rates', async (req, res) => {
   try {
@@ -86,6 +105,9 @@ app.use('/goals', goalRoutes);
 
 
 */
+
+
+
 
 mongoose.connect("mongodb+srv://chamilasewmini2:CScs2436@portfolio.kr18ftg.mongodb.net/")
   .then(() => console.log('Connected to MongoDB'))
