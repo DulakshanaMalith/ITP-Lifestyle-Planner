@@ -2,6 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const axios = require('axios');
+const bodyParser = require('body-parser');
+
+//require('./scheduler');
+require('dotenv').config();
+
+
+
+///reruire 8 funtions routes.....................
+
 //login 
 const userRoutes = require('./routes/userRoutes');
 
@@ -31,17 +40,20 @@ const CreateItineraryRoute = require("./routes/CreateItineraryRoute");
 const activityRoutes = require("./routes/activityRoutes");
 const expensesRoutes = require("./routes/expensesRoutes")
 
-const app = express();
-const bodyParser = require('body-parser');
+//eventMinder
+const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
 
-//require('./scheduler');
-require('dotenv').config();
+//........................................
+
+const app = express();
+
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
 
+//routes.......................................
 //login
 app.use('/api/users', userRoutes);
 //meet-assist
@@ -70,6 +82,9 @@ app.use("/vehicles", vehicleRoute);
 app.use('/occasions', occasionRoutes);
 app.use('/hospitals', hospitalTasksRouter);
 
+//eventMinder
+app.use("/eventMind", eventMinderReminderRoutes);
+//.................................................
 
 //finance-guard
 /*app.get('/api/rates', async (req, res) => {
@@ -116,7 +131,7 @@ app.use('/hospitals', hospitalTasksRouter);
 
 */
 
-
+//................................................
 
 
 mongoose.connect("mongodb+srv://chamilasewmini2:CScs2436@portfolio.kr18ftg.mongodb.net/")
