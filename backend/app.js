@@ -43,6 +43,9 @@ const expensesRoutes = require("./routes/expensesRoutes")
 //eventMinder
 const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
 
+//Pay-Track
+const paymentRoutes = require('./routes/paymentRoutes');
+
 //........................................
 
 const app = express();
@@ -84,6 +87,11 @@ app.use('/hospitals', hospitalTasksRouter);
 
 //eventMinder
 app.use("/eventMind", eventMinderReminderRoutes);
+
+//Pay-Track
+app.use('/api/payments', paymentRoutes);
+
+
 //.................................................
 
 //finance-guard
