@@ -38,7 +38,8 @@ const hospitalTasksRouter = require('./routes/hospitalTasksRoute');
 const eventsRoutes = require("./routes/eventRoutes");
 const CreateItineraryRoute = require("./routes/CreateItineraryRoute");
 const activityRoutes = require("./routes/activityRoutes");
-const expensesRoutes = require("./routes/expensesRoutes")
+const expensesRoutes = require("./routes/expensesRoutes");
+const guestListRoutes = require('./routes/guestListRoutes');
 
 //eventMinder
 const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
@@ -76,6 +77,7 @@ app.use('/api', eventsRoutes);
 app.use('/api',CreateItineraryRoute);
 app.use('/api', activityRoutes);
 app.use('/api', expensesRoutes);
+app.use('/api', guestListRoutes);
 
 //shop smart
 app.use("/todos", todoRoutes);
