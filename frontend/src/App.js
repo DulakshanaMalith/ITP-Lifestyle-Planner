@@ -3,6 +3,7 @@ import Header from './components/Header';
 //import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './components/Dashboard/Dashboard';
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -18,7 +19,7 @@ function App() {
       <Header /> 
       
         <Routes>
-          <Route path="/" element={< Register/>} />
+          <Route path="/" element={< Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> 
           
