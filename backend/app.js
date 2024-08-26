@@ -47,6 +47,9 @@ const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
 //Pay-Track
 const paymentRoutes = require('./routes/paymentRoutes');
 
+
+//health-mate
+const healthroute = require('./routes/HealthMatereminderRoutes');
 //........................................
 
 const app = express();
@@ -93,7 +96,8 @@ app.use("/eventMind", eventMinderReminderRoutes);
 //Pay-Track
 app.use('/api/payments', paymentRoutes);
 
-
+//health-mate
+app.use('/health', healthroute);
 //.................................................
 
 //finance-guard
