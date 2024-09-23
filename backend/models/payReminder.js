@@ -25,6 +25,6 @@ const payreminderSchema = new Schema({
   }
 });
 
-const Reminder = mongoose.model('Reminder', payreminderSchema);
+const Reminder = mongoose.model('payreminderSchema', payreminderSchema);
 
 module.exports = Reminder;
