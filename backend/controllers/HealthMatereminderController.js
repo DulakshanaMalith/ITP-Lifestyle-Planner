@@ -1,8 +1,8 @@
 const Reminder = require('../models/HealthMatereminder');
 
 exports.addReminder = async (req, res) => {
-    const { reminderType, description, days, hours, minutes, seconds } = req.body;
-    const newReminder = new Reminder({ reminderType, description, days, hours, minutes, seconds });
+    const { reminderType, description, days, time } = req.body;
+    const newReminder = new Reminder({ reminderType, description, days, time });
     try {
         const savedReminder = await newReminder.save();
         res.status(201).json(savedReminder);
@@ -24,12 +24,12 @@ exports.getReminders = async (req, res) => {
 
 exports.updateReminder = async (req, res) => {
     const { id } = req.params;
-    const { reminderType, description, days, hours, minutes, seconds } = req.body;
+    const { reminderType, description, days, time } = req.body;
 
     try {
         const updatedReminder = await Reminder.findByIdAndUpdate(
             id,
-            { reminderType, description, days, hours, minutes, seconds },
+            { reminderType, description, days, time },
             { new: true, runValidators: true }
         );
 
