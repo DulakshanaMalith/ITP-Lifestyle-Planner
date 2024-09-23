@@ -1,0 +1,56 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px; /* Set a fixed height for the header */
+  width: 100%; /* Full width */
+  padding: 0 20px; /* Horizontal padding */
+  background-color: #d9d9d9; /* Background color */
+}
+
+.logo jpeg {
+  margin-left: 20px; /* Space from the left */
+  height: 800%; /* Make logo height match the nav bar height */
+  display: flex;
+  align-items: center; /* Center logo vertically */
+}
+
+.logo h2 {
+  margin: 0;
+  font-size: 21px; /* Adjust font size as needed */
+  font-weight: 800;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Space between links */
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black; /* Text color */
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between user info elements */
+  font-weight: 700;
+}
+
+.profileName {
+  font-size: 17px; /* Profile name font size */
+  font-weight: 800; /* Bold font weight */
+}
+
+.profile-pic {
+  width: 40px; /* Profile picture width */
+  height: 40px; /* Profile picture height */
+  border-radius: 50%; /* Circular profile picture */
+}

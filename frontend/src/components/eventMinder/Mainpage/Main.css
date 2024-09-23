@@ -1,0 +1,46 @@
+body {
+  background-color: hsl(120, 87%, 94%); /* Light green background */
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Ensure it covers the full height */
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.illustration img {
+  width: 600px; 
+  margin-left: 80px;
+}
+
+.text-content {
+  max-width: 600px;
+  margin-right: 50px;
+}
+
+.text-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: green;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.get-started {
+  background-color: #00c853;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}

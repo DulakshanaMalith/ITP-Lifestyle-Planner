@@ -1,0 +1,46 @@
+.gift-options-page {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .gift-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+  }
+  
+  .gift-button {
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .gift-button.kapruka {
+    background-color: #7cba01;
+    color: white;
+  }
+  
+  .gift-button.lassana-flora {
+    background-color: #ffdf00;
+    color: white;
+  }
+  
+  .gift-button.cactus-by-dee {
+    background-color: #00b3b3;
+    color: white;
+  }
+  
+  .gift-button:hover {
+    opacity: 0.9;
+  }
+  

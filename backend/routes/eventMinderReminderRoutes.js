@@ -18,4 +18,12 @@ router.put('/reminders/:id', reminderController.updateReminder);
 // Route to delete a reminder by ID
 router.delete('/reminders/:id', reminderController.deleteReminder);
 
+// Route to get reminders by specific date for birthdays
+router.get('/dateBirthday', reminderController.getRemindersByDateBirthday);
+
+// Route to get reminders by specific date for anniversaries
+router.get('/dateAnniversaries', reminderController.getRemindersByDateAnniversaries);
+router.get('/dateMemorialDays', reminderController.getRemindersByDateMemorialDays);
+router.get('/dateOtherSpecialDays', reminderController.getRemindersByDateOtherSpecialDays);
+
 module.exports = router;

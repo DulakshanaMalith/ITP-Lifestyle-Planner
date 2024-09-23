@@ -50,4 +50,4 @@ const ReminderSchema = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model('eventMinderReminderModel', ReminderSchema);
+module.exports = mongoose.model('ReminderSchema', ReminderSchema);
