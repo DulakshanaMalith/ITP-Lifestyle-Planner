@@ -1,25 +1,25 @@
 const Income = require('../models/incomeModel');
-
 exports.addIncome = async (req, res) => {
   try {
     const { source, amount, date } = req.body;
 
-    // Validate that required fields are provided
+    // Check for missing fields
     if (!source || !amount || !date) {
       return res.status(400).json({ message: 'All fields (source, amount, date) are required' });
     }
 
-    // Validate that amount is a positive number
+    // Validate amount
     if (amount <= 0) {
       return res.status(400).json({ message: 'Amount must be a positive number' });
     }
 
-    // Validate that the date is not in the future
+    // Validate date
     const currentDate = new Date();
     if (new Date(date) > currentDate) {
       return res.status(400).json({ message: 'Date cannot be in the future' });
     }
 
+    // Create new income record
     const newIncome = new Income({
       source,
       amount,
@@ -28,9 +28,9 @@ exports.addIncome = async (req, res) => {
     });
 
     await newIncome.save();
-    res.status(201).json(newIncome);
+    res.status(201).json({ message: 'Income added successfully', income: newIncome });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Failed to add income', error: error.message });
   }
 };
 
