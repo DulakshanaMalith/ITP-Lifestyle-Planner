@@ -16,6 +16,7 @@ const userRoutes = require('./routes/userRoutes');
 
 //meet-assist
 const router=require("./routes/MeetAssistRoutes");
+const meetSheduleRoutes = require('./routes/MeetSheduleRoute');
 
 //auto-assist
 const vehicleRoutes = require('./routes/vehicleRoutes');
@@ -63,8 +64,13 @@ app.use(cors());
 //routes.......................................
 //login
 app.use('/api/users', userRoutes);
+
+
 //meet-assist
 app.use("/meet",router);
+app.use('/meetShedule', meetSheduleRoutes);
+
+
 //auto-assist
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/reminders', reminderRoutes);
