@@ -53,6 +53,8 @@ const payreminderRoutes = require('./routes/payreminderRoutes');
 
 //health-mate
 const healthroute = require('./routes/HealthMatereminderRoutes');
+const healthDataRoute = require('./routes/HealthDataRoutes');
+
 //........................................
 
 const app = express();
@@ -108,6 +110,8 @@ app.use('/api/cards', cardRoutes);
 
 //health-mate
 app.use('/health', healthroute);
+app.use('/healthdata', healthDataRoute);
+
 //.................................................
 
 //finance-guard
