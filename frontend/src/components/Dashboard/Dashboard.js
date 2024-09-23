@@ -1,25 +1,118 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header';
+import Footer from '../Footer/Footer';
 
-function Dashboard() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      
-      
-    </div>
-  )
-}
+const Dashboard = () => {
+    const navigate = useNavigate();
 
-export default Dashboard
+    const handleButtonClick = (route) => {
+        navigate(route);
+    };
 
-/*<ul>
-        <li><Link to="/auto-assist">Auto Assist</Link></li>
-        <li><Link to="/shop-smart">Shop Smart</Link></li>
-        <li><Link to="/event-minder">Event Minder</Link></li>
-        <li><Link to="/health-mate">Health Mate</Link></li>
-        <li><Link to="/finance-guard">Finance Guard</Link></li>
-        <li><Link to="/pay-track">Pay Track</Link></li>
-        <li><Link to="/meet-assist">Meet Assist</Link></li>
-        <li><Link to="/trip-planner">Trip Planner</Link></li>
-      </ul> 
-      */
+    return (
+      <div>
+        <Header/>
+        <div style={{ 
+            padding: '40px', 
+            textAlign: 'center', 
+            backgroundColor: '#ffffff', 
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)', 
+            borderRadius: '12px', 
+            maxWidth: '600px', 
+            margin: '40px auto',
+            fontFamily: "'Roboto', sans-serif"
+        }}>
+            <h1 style={{ 
+                fontSize: '32px', 
+                fontWeight: '600', 
+                color: '#333', 
+                marginBottom: '40px' 
+            }}>
+                Dashboard
+            </h1>
+            <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: '1fr 1fr', 
+                gap: '20px' 
+            }}>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Auto Assist
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Shop Smart
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Pay Track
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Finance Guard
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Health Mate
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    EventnMinder
+                </button>
+                <button 
+                    onClick={() => handleButtonClick('/meet-assist')} 
+                    style={buttonStyle}>
+                    Meet Assist
+                </button>
+                <button 
+                    onClick={() => handleButtonClick()} 
+                    style={buttonStyle}>
+                    Event Planner
+                </button>
+            </div>
+        </div>
+        <Footer />
+        </div>
+    );
+};
+
+const buttonStyle = {
+    padding: '15px 25px', 
+    fontSize: '16px', 
+    backgroundColor: '#007BFF', 
+    color: '#ffffff', 
+    border: 'none', 
+    borderRadius: '8px', 
+    cursor: 'pointer', 
+    transition: 'background-color 0.3s ease', 
+    boxShadow: '0 2px 8px rgba(0, 123, 255, 0.2)',
+    fontWeight: '500',
+    textTransform: 'capitalize',
+    outline: 'none',
+};
+
+const buttonHoverStyle = {
+    backgroundColor: '#0056b3',
+};
+
+// Adding hover effect for the buttons dynamically
+const hoverEffect = (button) => {
+    button.addEventListener('mouseover', () => {
+        Object.assign(button.style, buttonHoverStyle);
+    });
+
+    button.addEventListener('mouseout', () => {
+        Object.assign(button.style, buttonStyle);
+    });
+};
+
+document.querySelectorAll('button').forEach(hoverEffect);
+
+export default Dashboard;

@@ -1,0 +1,185 @@
+/* Container styling to ensure full height and proper flex behavior */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Ensure no margins are causing alignment issues */
+  }
+  
+  /* Navigation styling to span full width */
+  .meet-nav {
+    background-color: #0E4239;
+    color: white;
+    padding: 10px;
+    width: 100%; /* Ensure the nav bar spans the full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  /* Fullscreen main section with background image */
+  .main-window {
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; /* Prevents image repetition */
+    height: 100vh; /* Full screen height */
+    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: row;
+    
+    align-items: stretch;
+    color: white;
+   
+    padding: 20px;
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.5); /* Adds a shadow overlay for better readability */
+  }
+  
+  
+  /* Main content on the left-hand side */
+  .main-content {
+    flex: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+    border-radius: 15px; /* Rounded corners for a soft look */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for a 3D effect */
+  }
+  
+  /* Main image on the right-hand side */
+  .main-image {
+    flex: 1; /* Take up equal space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-image img {
+    width: 100%; /* Ensure image fills its container */
+    height: 100%; /* Match the height of the container */
+    object-fit: cover; /* Ensure the image maintains aspect ratio without distortion */
+    border-radius: 10px;
+  }
+  
+  
+  
+  /* Welcome heading styling */
+  .welcome-heading {
+    font-size: 30px; /* Reduced font size for a calmer look */
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; /* Bold for headings */
+    margin-bottom: 20px;
+    color: black; /* Text color matching the overall theme */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Removed text shadow for clarity */
+  }
+  
+  /* Welcome description styling */
+  .welcome-description {
+    font-size: 15px; /* Adjusted font size */
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    max-width: 800px; /* Limit width for readability */
+    color: black; /* Text color matching the overall theme */
+    line-height: 1.6; /* Removed text shadow for clarity */
+  }
+  
+  /* Get started button on main section */
+  .get-started-button {
+    background-color: white; /* Bright color to stand out */
+    color: black;
+    padding: 15px 30px;
+    font-size: 15px;
+    border: none;
+    border-radius: 50px; /* Rounded button */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .get-started-button:hover {
+    background-color: white; /* On hover, switch to black background */
+    color: rgb(11, 77, 27); /* White text on hover */
+    transform: scale(1.05); /* Slightly grow button on hover */
+  }
+  
+  /* Smooth scrolling for the rest of the page */
+  .home-content {
+    scroll-behavior: smooth;
+    padding: 50px 20px;
+  }
+  
+  
+  /* Grid container for the sections */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px; /* Spacing between grid items */
+    padding: 40px 20px; /* Padding around the grid */
+  }
+  
+  /* Each grid item styling */
+  .grid-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  }
+  
+  .grid-item img {
+    width: 35%; /* Make image fill the top of the grid item */
+    height: auto;
+    border-radius: 10px; /* Rounded image corners */
+    margin-bottom: 15px; /* Space between image and text */
+  }
+  
+  /* Section heading inside grid item */
+  .grid-item .section-heading {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Section description inside grid item */
+  .grid-item .section-description {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  /* Get started button inside grid item */
+  .grid-item .get-start-button {
+    background-color: #0E4239;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .grid-item .get-start-button:hover {
+    background-color: #08512E;
+    transform: scale(1.05); /* Slightly grow button on hover */
+  }
+  
+  /* Adjust padding and spacing for responsiveness */
+  @media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+  }
+  
+  body, html {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  
