@@ -1,100 +1,67 @@
-const Todo = require("../models/Todo");
+const Todo = require('../models/Todo');
 
-const getAllTodos = async (req, res, next) => {
+const addTodo = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+
+    const todo = new Todo({
+        user: req.user.id, // Get logged-in user ID
+        title,
+        dateTime,
+        description
+    });
+
     try {
-        const todos = await Todo.find();
-        res.status(200).json({ todos });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+        const createdTodo = await todo.save();
+        res.status(201).json(createdTodo);
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid todo data' });
     }
 };
 
-const getTodoById = async (req, res, next) => {
-    const { id } = req.params;
-
+const getUserTodos = async (req, res) => {
     try {
-        const todo = await Todo.findById(id);
-
-        if (!todo) {
-            return res.status(404).json({ message: "Todo not found" });
-        }
-        res.status(200).json({ todo });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+        const todos = await Todo.find({ user: req.user.id }).populate('user', 'name email');
+        res.json(todos);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
-
-const addTodo = async (req, res, next) => {
-    const { title, description, setDate, time } = req.body;
-    let todo;
-
-    try {
-        const today = new Date().toISOString().split('T')[0];
-        if (setDate < today) {
-            return res.status(400).json({ message: "Set date cannot be in the past" });
-        }
-
-        todo = new Todo({
-            title,
-            description,
-            setDate,
-            time,
-        });
-        await todo.save();
-        res.status(201).json({ todo });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
-    }
-};
-
-const updateTodo = async (req, res, next) => {
-    const { id } = req.params;
-    const { title, description, completed, setDate, time } = req.body; // Include time here
+const editTodo = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+    const todoId = req.params.id;
 
     try {
-        const today = new Date().toISOString().split('T')[0];
-        if (setDate < today) {
-            return res.status(400).json({ message: "Set date cannot be in the past" });
-        }
-
-        const todo = await Todo.findByIdAndUpdate(
-            id,
-            { title, description, completed, setDate, time }, 
-            { new: true }
+        const updatedTodo = await Todo.findByIdAndUpdate(
+            todoId,
+            { title, dateTime, description },
+            { new: true, runValidators: true }
         );
 
-        if (!todo) {
-            return res.status(404).json({ message: "Todo not found" });
+        if (!updatedTodo) {
+            return res.status(404).json({ message: 'Todo not found' });
         }
-        res.status(200).json({ todo });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+
+        res.json(updatedTodo);
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid todo data' });
     }
 };
 
-const deleteTodo = async (req, res, next) => {
-    const { id } = req.params;
+const deleteTodo = async (req, res) => {
+    const todoId = req.params.id;
 
     try {
-        const todo = await Todo.findByIdAndDelete(id);
+        const todo = await Todo.findByIdAndDelete(todoId);
 
         if (!todo) {
-            return res.status(404).json({ message: "Todo not found" });
+            return res.status(404).json({ message: 'Todo not found' });
         }
-        res.status(200).json({ message: "Todo deleted" });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+
+        res.json({ message: 'Todo deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
-exports.getAllTodos = getAllTodos;
-exports.getTodoById = getTodoById;
-exports.addTodo = addTodo;
-exports.updateTodo = updateTodo;
-exports.deleteTodo = deleteTodo;
+module.exports = { addTodo, getUserTodos, editTodo, deleteTodo };

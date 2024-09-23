@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const VehicleSchema = new mongoose.Schema({
+const vehicleSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -8,10 +8,6 @@ const VehicleSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-    },
-    completed: {
-        type: Boolean,
-        default: false,
     },
     date: {
         type: Date,
@@ -21,6 +17,15 @@ const VehicleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User', // Assuming you have a User model for authentication
+    },
+}, {
+    timestamps: true,
 });
 
-module.exports = mongoose.model('vehicle', VehicleSchema);
+const Vehicle = mongoose.model('Vehicle', vehicleSchema);
+
+module.exports = Vehicle;

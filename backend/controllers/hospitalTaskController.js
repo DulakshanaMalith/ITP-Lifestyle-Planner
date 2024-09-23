@@ -1,82 +1,54 @@
-const HospitalTask = require('../models/HospitalTask');
+// controllers/medicalController.js
+const Medical = require('../models/HospitalTask');
 
-// Get all tasks
-exports.getAllTasks = async (req, res) => {
+exports.addMedical = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+
     try {
-        const tasks = await HospitalTask.find();
-        res.status(200).json(tasks);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching tasks', error });
-    }
-};
-
-// Get a task by ID
-exports.getTaskById = async (req, res) => {
-    try {
-        const task = await HospitalTask.findById(req.params.id);
-        if (!task) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-        res.status(200).json(task);
-    } catch (error) {
-        res.status(500).json({ message: 'Error fetching task', error });
-    }
-};
-
-
-// Create a new task
-exports.createTask = async (req, res) => {
-    try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-        
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const task = new HospitalTask(req.body);
-        await task.save();
-        res.status(201).json(task);
-    } catch (error) {
-        res.status(400).json({ message: 'Error creating task', error });
-    }
-};
-
-// Update a task by ID
-
-exports.updateTask = async (req, res) => {
-    try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-
-        if (date && date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const task = await HospitalTask.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true,
+        const medical = new Medical({
+            title,
+            dateTime,
+            description,
+            user: req.user.id
         });
-
-        if (!task) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-
-        res.status(200).json(task);
+        await medical.save();
+        res.status(201).json(medical);
     } catch (error) {
-        res.status(400).json({ message: 'Error updating task', error });
+        res.status(400).json({ message: 'Failed to create medical record', error });
     }
 };
 
-// Delete a task by ID
-exports.deleteTask = async (req, res) => {
+exports.getUserMedicals = async (req, res) => {
     try {
-        const task = await HospitalTask.findByIdAndDelete(req.params.id);
-        if (!task) {
-            return res.status(404).json({ message: 'Task not found' });
-        }
-        res.status(200).json({ message: 'Task deleted' });
+        const medicals = await Medical.find({ user: req.user.id });
+        res.json(medicals);
     } catch (error) {
-        res.status(500).json({ message: 'Error deleting task', error });
+        res.status(400).json({ message: 'Failed to fetch medical records', error });
+    }
+};
+
+exports.updateMedical = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+
+    try {
+        const medical = await Medical.findByIdAndUpdate(req.params.id, { title, dateTime, description }, { new: true });
+        if (!medical) {
+            return res.status(404).json({ message: 'Medical record not found' });
+        }
+        res.json(medical);
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to update medical record', error });
+    }
+};
+
+exports.deleteMedical = async (req, res) => {
+    try {
+        const medical = await Medical.findByIdAndDelete(req.params.id);
+        if (!medical) {
+            return res.status(404).json({ message: 'Medical record not found' });
+        }
+        res.json({ message: 'Medical record deleted successfully' });
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to delete medical record', error });
     }
 };

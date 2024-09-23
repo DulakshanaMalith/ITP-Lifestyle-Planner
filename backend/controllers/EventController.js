@@ -1,101 +1,54 @@
-const Event = require("../models/Event");
+// controllers/eventController.js
+const Event = require('../models/Event');
 
-const getAllEvents = async (req, res, next) => {
-    try {
-        const events = await Event.find();
-        res.status(200).json({ events });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error"});
-    }
-};
-
-const getEventById = async (req, res, next) => {
-    const { id } = req.params;
+exports.addEvent = async (req, res) => {
+    const { title, dateTime, description } = req.body;
 
     try {
-        const event = await Event.findById(id);
-
-        if (!event) {
-            return res.status(404).json({ message: "Event not found" });
-        }
-        res.status(200).json({ event });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
-    }
-};
-
-const addEvent = async (req, res, next) => {
-    const { title, description, date, time } = req.body;
-    let event;
-
-    try {
-        const today = new Date().toISOString().split('T')[0];
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        event = new Event({
+        const event = new Event({
             title,
+            dateTime,
             description,
-            date,
-            time,
+            user: req.user.id
         });
-
         await event.save();
-        res.status(201).json({ event });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(201).json(event);
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to create event', error });
     }
 };
 
+exports.getUserEvents = async (req, res) => {
+    try {
+        const events = await Event.find({ user: req.user.id });
+        res.json(events);
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to fetch events', error });
+    }
+};
 
-const updateEvent = async (req, res, next) => {
-    const { id } = req.params;
-    const { title, description, completed, date, time } = req.body;
+exports.updateEvent = async (req, res) => {
+    const { title, dateTime, description } = req.body;
 
     try {
-        const today = new Date().toISOString().split('T')[0];
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const event = await Event.findByIdAndUpdate(
-            id,
-            { title, description, completed, date, time },
-            { new: true }
-        );
-
+        const event = await Event.findByIdAndUpdate(req.params.id, { title, dateTime, description }, { new: true });
         if (!event) {
-            return res.status(404).json({ message: "Event not found" });
+            return res.status(404).json({ message: 'Event not found' });
         }
-        res.status(200).json({ event });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+        res.json(event);
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to update event', error });
     }
 };
 
-const deleteEvent = async (req, res, next) => {
-    const { id } = req.params;
-
+exports.deleteEvent = async (req, res) => {
     try {
-        const event = await Event.findByIdAndDelete(id);
-
+        const event = await Event.findByIdAndDelete(req.params.id);
         if (!event) {
-            return res.status(404).json({ message: "Event not found" });
+            return res.status(404).json({ message: 'Event not found' });
         }
-        res.status(200).json({ message: "Event deleted" });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server error" });
+        res.json({ message: 'Event deleted successfully' });
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to delete event', error });
     }
 };
-
-exports.getAllEvents = getAllEvents;
-exports.getEventById = getEventById;
-exports.addEvent = addEvent;
-exports.updateEvent = updateEvent;
-exports.deleteEvent = deleteEvent;

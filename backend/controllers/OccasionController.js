@@ -1,72 +1,48 @@
+// controllers/occasionController.js
 const Occasion = require('../models/Occasion');
 
-// Get all occasions
-exports.getAllOccasions = async (req, res) => {
-    try {
-        const occasions = await Occasion.find();
-        res.status(200).json(occasions);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+exports.addOccasion = async (req, res) => {
+    const { title, dateTime, description } = req.body;
 
-// Get a single occasion
-exports.getOccasionById = async (req, res) => {
     try {
-        const occasion = await Occasion.findById(req.params.id);
-        if (!occasion) return res.status(404).json({ message: 'Occasion not found' });
-        res.status(200).json(occasion);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Create a new occasion
-exports.createOccasion = async (req, res) => {
-    try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-        
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const occasion = new Occasion(req.body);
+        const occasion = new Occasion({
+            title,
+            dateTime,
+            description,
+            user: req.user.id
+        });
         await occasion.save();
         res.status(201).json(occasion);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: 'Failed to create occasion', error });
     }
 };
-// Update an occasion
-exports.updateOccasion = async (req, res) => {
+
+exports.getUserOccasions = async (req, res) => {
     try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-
-        if (date && date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const occasion = await Occasion.findByIdAndUpdate(req.params.id, req.body, { new: true });
-
-        if (!occasion) {
-            return res.status(404).json({ message: 'Occasion not found' });
-        }
-
-        res.status(200).json(occasion);
+        const occasions = await Occasion.find({ user: req.user.id });
+        res.json(occasions);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: 'Failed to fetch occasions', error });
     }
 };
 
-// Delete an occasion
+exports.updateOccasion = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+
+    try {
+        const occasion = await Occasion.findByIdAndUpdate(req.params.id, { title, dateTime, description }, { new: true });
+        res.json(occasion);
+    } catch (error) {
+        res.status(400).json({ message: 'Failed to update occasion', error });
+    }
+};
+
 exports.deleteOccasion = async (req, res) => {
     try {
-        const occasion = await Occasion.findByIdAndDelete(req.params.id);
-        if (!occasion) return res.status(404).json({ message: 'Occasion not found' });
-        res.status(200).json({ message: 'Occasion deleted' });
+        await Occasion.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Occasion deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(400).json({ message: 'Failed to delete occasion', error });
     }
 };
