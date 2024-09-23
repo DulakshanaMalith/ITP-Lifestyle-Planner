@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-
+const { MONGO_URI } = require('./config');
 //require('./scheduler');
 require('dotenv').config();
 
@@ -47,6 +47,8 @@ const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
 
 //Pay-Track
 const paymentRoutes = require('./routes/paymentRoutes');
+const cardRoutes = require('./routes/cardRoutes');
+const payreminderRoutes = require('./routes/payreminderRoutes');
 
 
 //health-mate
@@ -89,18 +91,20 @@ app.use('/api', expensesRoutes);
 app.use('/api', guestListRoutes);
 
 //shop smart
-app.use("/todos", todoRoutes);
-app.use("/events", eventRoutes); 
-app.use('/meetings', MeetingRoute);
-app.use("/vehicles", vehicleRoute);
-app.use('/occasions', occasionRoutes);
-app.use('/hospitals', hospitalTasksRouter);
+app.use('/api/todos', todoRoutes); 
+app.use('/api/event', eventRoutes);
+app.use('/api/meetings', MeetingRoute);
+app.use('/api/vehicle', vehicleRoutes);
+app.use('/api/occasions', occasionRoutes);
+app.use('/api/medicals', hospitalTasksRouter);
 
 //eventMinder
 app.use("/eventMind", eventMinderReminderRoutes);
 
 //Pay-Track
 app.use('/api/payments', paymentRoutes);
+app.use('/api/payreminders', payreminderRoutes);
+app.use('/api/cards', cardRoutes);
 
 //health-mate
 app.use('/health', healthroute);
@@ -154,7 +158,7 @@ app.use('/health', healthroute);
 //................................................
 
 
-mongoose.connect("mongodb+srv://chamilasewmini2:CScs2436@portfolio.kr18ftg.mongodb.net/")
+mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .then(() => {
     app.listen(5000, () => console.log('Server running on port 5000'));

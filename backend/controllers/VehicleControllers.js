@@ -1,72 +1,71 @@
 const Vehicle = require('../models/Vehicle');
 
-// Add a new vehicle
-exports.addVehicle = async (req, res) => {
-    try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
+const addVehicle = async (req, res) => {
+    const { title, description, date, time } = req.body;
 
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
+    const vehicle = new Vehicle({
+        user: req.user.id,
+        title,
+        description,
+        date,
+        time,
+    });
 
-        const vehicle = new Vehicle(req.body);
-        await vehicle.save();
-        res.status(201).json(vehicle);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
-// Get all vehicles
-exports.getVehicles = async (req, res) => {
     try {
-        const vehicles = await Vehicle.find();
-        res.status(200).json(vehicles);
+        const createdVehicle = await vehicle.save();
+        res.status(201).json(createdVehicle);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: 'Invalid vehicle data' });
     }
 };
 
-// Get a single vehicle by ID
-exports.getVehicleById = async (req, res) => {
+// Get vehicles for the logged-in user
+const getUserVehicles = async (req, res) => {
     try {
-        const vehicle = await Vehicle.findById(req.params.id);
-        if (!vehicle) return res.status(404).json({ error: 'Vehicle not found' });
-        res.status(200).json(vehicle);
+        const vehicles = await Vehicle.find({ user: req.user.id }).populate('user', 'name email');
+        res.json(vehicles);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
-// Update a vehicle
-exports.updateVehicle = async (req, res) => {
+// Edit a vehicle
+const editVehicle = async (req, res) => {
+    const { title, description, date, time } = req.body;
+    const vehicleId = req.params.id;
+
     try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
+        const updatedVehicle = await Vehicle.findByIdAndUpdate(
+            vehicleId,
+            { title, description, date, time },
+            { new: true, runValidators: true }
+        );
 
-        if (date && date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
+        if (!updatedVehicle) {
+            return res.status(404).json({ message: 'Vehicle not found' });
         }
 
-        const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, { new: true });
-
-        if (!vehicle) {
-            return res.status(404).json({ error: 'Vehicle not found' });
-        }
-
-        res.status(200).json(vehicle);
+        res.json(updatedVehicle);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: 'Invalid vehicle data' });
     }
 };
 
 // Delete a vehicle
-exports.deleteVehicle = async (req, res) => {
+const deleteVehicle = async (req, res) => {
+    const vehicleId = req.params.id;
+
     try {
-        const vehicle = await Vehicle.findByIdAndDelete(req.params.id);
-        if (!vehicle) return res.status(404).json({ error: 'Vehicle not found' });
-        res.status(200).json({ message: 'Vehicle deleted successfully' });
+        const vehicle = await Vehicle.findByIdAndDelete(vehicleId);
+
+        if (!vehicle) {
+            return res.status(404).json({ message: 'Vehicle not found' });
+        }
+
+        res.json({ message: 'Vehicle deleted successfully' });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ message: 'Server error' });
     }
 };
+
+module.exports = { addVehicle, getUserVehicles, editVehicle, deleteVehicle };

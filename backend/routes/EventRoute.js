@@ -1,12 +1,16 @@
-const express = require("express");
-const EventController = require("../controllers/EventController");
+const express = require('express');
+const { addEvent, getUserEvents, updateEvent, deleteEvent } = require('../controllers/EventController');
+const { authenticateToken } = require('../middleware/authMiddleware');
 
-const Router = express.Router();
+const router = express.Router();
 
-Router.get("/", EventController.getAllEvents);
-Router.get("/:id", EventController.getEventById);
-Router.post("/", EventController.addEvent);
-Router.put("/:id", EventController.updateEvent);
-Router.delete("/:id", EventController.deleteEvent);
+// Apply authentication middleware to all routes
+router.use(authenticateToken);
 
-module.exports = Router;
+// Define routes
+router.post('/', addEvent); // Create a new event
+router.get('/', getUserEvents); // Get all events for the logged-in user
+router.put('/:id', updateEvent); // Update an existing event
+router.delete('/:id', deleteEvent); // Delete an event by ID
+
+module.exports = router;

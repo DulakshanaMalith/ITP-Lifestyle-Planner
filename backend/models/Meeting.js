@@ -1,26 +1,28 @@
 const mongoose = require('mongoose');
 
-const MeetingSchema = new mongoose.Schema({
+const meetingSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     title: {
         type: String,
-        required: true,
+        required: true
+    },
+    dateTime: {
+        type: Date,
+        required: true
     },
     description: {
         type: String,
-        required: true,
+        required: true
     },
-    completed: {
-        type: Boolean,
-        default: false,
-    },
-    date: {
+    createdAt: {
         type: Date,
-        required: true,
-    },
-    time: {
-        type: String,
-        required: true,
-    },
+        default: Date.now
+    }
 });
 
-module.exports = mongoose.model('Meeting', MeetingSchema);
+const Meeting = mongoose.model('Meeting', meetingSchema);
+module.exports = Meeting;

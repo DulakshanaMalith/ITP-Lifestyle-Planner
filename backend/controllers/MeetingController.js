@@ -1,69 +1,68 @@
 const Meeting = require('../models/Meeting');
 
-exports.addMeeting = async (req, res) => {
+const addMeeting = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+
+    const meeting = new Meeting({
+        user: req.user.id, // Get logged-in user ID
+        title,
+        dateTime,
+        description
+    });
+
     try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-        
-        if (date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
+        const createdMeeting = await meeting.save();
+        res.status(201).json(createdMeeting);
+    } catch (error) {
+        res.status(400).json({ message: 'Invalid meeting data' });
+    }
+};
+
+const getUserMeetings = async (req, res) => {
+    try {
+        const meetings = await Meeting.find({ user: req.user.id }).populate('user', 'name email');
+        res.json(meetings);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+
+const editMeeting = async (req, res) => {
+    const { title, dateTime, description } = req.body;
+    const meetingId = req.params.id;
+
+    try {
+        const updatedMeeting = await Meeting.findByIdAndUpdate(
+            meetingId,
+            { title, dateTime, description },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedMeeting) {
+            return res.status(404).json({ message: 'Meeting not found' });
         }
 
-        const meeting = new Meeting(req.body);
-        await meeting.save();
-        res.status(201).json(meeting);
+        res.json(updatedMeeting);
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({ message: 'Invalid meeting data' });
     }
 };
 
+const deleteMeeting = async (req, res) => {
+    const meetingId = req.params.id;
 
-exports.getMeetings = async (req, res) => {
     try {
-        const meetings = await Meeting.find();
-        res.status(200).json(meetings);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
-
-exports.getMeetingById = async (req, res) => {
-    try {
-        const meeting = await Meeting.findById(req.params.id);
-        if (!meeting) return res.status(404).json({ error: 'Meeting not found' });
-        res.status(200).json(meeting);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
-
-exports.updateMeeting = async (req, res) => {
-    try {
-        const { date } = req.body;
-        const today = new Date().toISOString().split('T')[0];
-
-        if (date && date < today) {
-            return res.status(400).json({ message: "Date cannot be in the past" });
-        }
-
-        const meeting = await Meeting.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const meeting = await Meeting.findByIdAndDelete(meetingId);
 
         if (!meeting) {
-            return res.status(404).json({ error: 'Meeting not found' });
+            return res.status(404).json({ message: 'Meeting not found' });
         }
 
-        res.status(200).json(meeting);
+        res.json({ message: 'Meeting deleted successfully' });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
-exports.deleteMeeting = async (req, res) => {
-    try {
-        const meeting = await Meeting.findByIdAndDelete(req.params.id);
-        if (!meeting) return res.status(404).json({ error: 'Meeting not found' });
-        res.status(200).json({ message: 'Meeting deleted successfully' });
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
+module.exports = { addMeeting, getUserMeetings, editMeeting, deleteMeeting };
