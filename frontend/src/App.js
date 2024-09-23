@@ -10,6 +10,18 @@ import UpcomingMeet from './components/MeetAssist/UpcomingMeet/UpcomingMeet';
 import ShowAMeet from './components/MeetAssist/ShowAMeet/ShowAMeet';
 import ChangeMeet from './components/MeetAssist/ChangeMeet/ChangeMeet';
 import MeetSchedule from './components/MeetAssist/MeetSchedule/MeetSchedule';
+import HomePage from './components/HealthMate/HomePage';
+import Services from './components/HealthMate/Services';
+import EmergencyContacts from './components/HealthMate/EmergencyContacts';
+import DoctorAppointments from './components/HealthMate/DoctorAppointments';
+import OrderPrescription from './components/HealthMate/PrescriptionOrder';
+import ReminderList from './components/HealthMate/ReminderList';
+import AddReminder from './components/HealthMate/AddReminder';
+import UpdateReminder from './components/HealthMate/UpdateReminder';
+import HealthDataAdd from './components/HealthMate/HealthDataAdd';
+import HealthDataView from './components/HealthMate/HealthDataView';
+import UpdateHealthData from './components/HealthMate/UpdateHealthData';
+import HealthDataDashboard from './components/HealthMate/HealthDataDashboard';
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -29,6 +41,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> 
 
+
+
           {/* Navigation to MeetAssist Page  */}
           <Route path="/meet-assist" element={<MeetHome />} />
           <Route path="/MH" element={<MeetHome />} />
@@ -39,6 +53,23 @@ function App() {
           <Route path="/schedule" element={<MeetSchedule/>}></Route>
           
           
+           {/* Navigation to HealthMate  Page  */}
+           <Route path="/Health-home" element={<HomePage />} />
+           <Route path="/services" element={<Services/>} />
+          <Route path="/emergency-contacts" element={<EmergencyContacts/>} />
+          <Route path="/doctor-appointments" element={<DoctorAppointments/>} />
+          <Route path="/prescription-order" element={<OrderPrescription/>} />
+          <Route path="/remainderlist" element={<ReminderList/>} />
+          <Route path="/add" element={<AddReminder/>} />
+          <Route path="/update/:id" element={<UpdateReminder/>} />
+
+          <Route path="/addhealthdata" element={<HealthDataAdd/>} />
+          <Route path="/viewhealthdata" element={<HealthDataView/>} />
+          <Route path="/updatehealthdata/:id" element={<UpdateHealthData/>} />
+          <Route path="/dashboard" element={<HealthDataDashboard/>} />
+
+
+
         </Routes>
       </div>
     </Router>
