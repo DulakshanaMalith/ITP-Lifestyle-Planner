@@ -62,7 +62,7 @@ const Dashboard = () => {
                     Health Mate
                 </button>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/event-minder-home')} 
                     style={buttonStyle}>
                     EventnMinder
                 </button>

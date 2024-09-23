@@ -1,0 +1,66 @@
+.anniversaries-page {
+  padding: 40px;
+}
+
+.anniversaries-page .header {
+  text-align: start;
+  margin-left: 90px;
+  font-size: 45px;
+  font-weight: 900;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.anniversaries-page img {
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.anniversaries-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 80px;
+}
+
+.reminder-button {
+  background-color: #00c853; /* Updated button color */
+  border: 2px solid #00c853; /* Adjusted border color */
+  color: #fff; /* Text color */
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center; /* Center text in button */
+}
+
+.reminder-button:hover {
+  background-color: #009e40; /* Darker shade on hover */
+  color: #fff; /* Keep text white on hover */
+}
+
+.reminder-button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .anniversaries-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .anniversaries-options {
+      width: 90%;
+  }
+
+  .reminder-button {
+      font-size: 16px;
+      padding: 12px 20px;
+  }
+}
