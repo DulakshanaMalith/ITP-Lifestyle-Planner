@@ -24,8 +24,7 @@ const reminderRoutes = require('./routes/reminderRoutes');
 const serviceStationRoutes = require('./routes/serviceStationRoutes');
 
 //finance guard
-const incomeRoutes = require('./routes/incomeRoutes');
-const goalRoutes = require('./routes/goalRoutes');
+
 
 //shop smart
 const todoRoutes = require("./routes/TodoRoute");
@@ -82,8 +81,7 @@ app.use('/api/service-stations', serviceStationRoutes);
 
 
 //finance guard
-app.use('/income', incomeRoutes);
-app.use('/goals', goalRoutes); 
+
 
 //eventPlanner
 app.use('/api', eventsRoutes);
@@ -112,54 +110,7 @@ app.use('/api/cards', cardRoutes);
 app.use('/health', healthroute);
 app.use('/healthdata', healthDataRoute);
 
-//.................................................
 
-//finance-guard
-/*app.get('/api/rates', async (req, res) => {
-  try {
-    
-    const goldResponse = await axios.get('https://www.alphavantage.co/query', {
-      params: {
-        function: 'TIME_SERIES_DAILY',
-        symbol: 'XAUUSD',  
-        apikey: process.env.ALPHAVANTAGE_API_KEY,
-      },
-    });
-
-   
-    const silverResponse = await axios.get('https://www.alphavantage.co/query', {
-      params: {
-        function: 'TIME_SERIES_DAILY',
-        symbol: 'XAGUSD',  
-        apikey: process.env.ALPHAVANTAGE_API_KEY,
-      },
-    });
-
-   
-    const latestGoldDate = Object.keys(goldResponse.data['Time Series (Daily)'])[0];
-    const latestGoldPrice = goldResponse.data['Time Series (Daily)'][latestGoldDate]['4. close'];
-    const goldRatePerGram = parseFloat(latestGoldPrice) / 31.1035;
-
-   
-    const latestSilverDate = Object.keys(silverResponse.data['Time Series (Daily)'])[0];
-    const latestSilverPrice = silverResponse.data['Time Series (Daily)'][latestSilverDate]['4. close'];
-    const silverRatePerGram = parseFloat(latestSilverPrice) / 28.3495;
-
-    
-    res.json({
-      goldRatePerGram: goldRatePerGram.toFixed(2),
-      silverRatePerGram: silverRatePerGram.toFixed(2),
-    });
-  } catch (error) {
-    console.error('Error fetching rates:', error);
-    res.status(500).json({ error: 'Failed to fetch rates' });
-  }
-});
-
-
-*/
-
-//................................................
 
 
 mongoose.connect(MONGO_URI)
