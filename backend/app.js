@@ -24,7 +24,13 @@ const reminderRoutes = require('./routes/reminderRoutes');
 const serviceStationRoutes = require('./routes/serviceStationRoutes');
 
 //finance guard
-
+const path = require('path');
+const incomecardRoutes = require('./routes/incomecardRoutes');
+const budgetRoutes = require('./routes/budgetRoutes');
+const transactionRoutes = require("./routes/transactionRoutes");
+const goalRoutes = require("./routes/goalRoutes");
+const savingRoutes = require("./routes/savingRoutes");
+const loanRoutes = require('./routes/loanRoutes');
 
 //shop smart
 const todoRoutes = require("./routes/TodoRoute");
@@ -81,6 +87,16 @@ app.use('/api/service-stations', serviceStationRoutes);
 
 
 //finance guard
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/budget', budgetRoutes);
+app.use('/', incomecardRoutes);
+app.use("/goals", goalRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use('/loans', loanRoutes);
+app.use("/continue", savingRoutes);
+
+
 
 
 //eventPlanner
