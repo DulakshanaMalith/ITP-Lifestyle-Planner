@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 
 
-
+//autoAssist
 const autoAssistReminderEmail = async (email, reminderDetails) => {
   const { vehicleName, reminderType, date, appointedTime, location, notes } = reminderDetails;
 
@@ -32,4 +32,51 @@ Notes: ${notes || "No notes provided."}`;
   }
 };
 
-module.exports = {  autoAssistReminderEmail};
+
+//eventPlanner
+// Function to send invitation email
+const sendInvitationEmail = async (email, invitationMessage) => {
+  const mailOptions = {
+    from: 'lifestyleplanner6@gmail.com',
+    to: email,
+    subject: 'Invitation',
+    text: invitationMessage,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+// Function to send reminder email
+const sendEventPlannerReminderEmail = async (email, eventDetails) => {
+  const { name, date, time, location } = eventDetails;
+
+  const reminderMessage = `Don't forget about the event "${name}" scheduled for ${date} at ${time} in ${location}.`;
+
+  const mailOptions = {
+    from: 'lifestyleplanner6@gmail.com',
+    to: email,
+    subject: `Reminder: Event "${name}" Scheduled`,
+    text: reminderMessage,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+
+//meetAssist
+
+
+//payTrack
+
+//FinanceGuard
+
+//eventMinder
+
+//HealthMate
+
+//ShopSmart
+
+module.exports = {  autoAssistReminderEmail,
+                    sendInvitationEmail,
+                    sendEventPlannerReminderEmail,
+};

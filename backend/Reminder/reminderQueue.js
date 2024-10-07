@@ -1,6 +1,7 @@
 const Queue = require('bull');
 const {
   checkUpcomingReminderAutoAssist,
+  checkUpcomingEvents,
 } = require('./reminderService');
 
 // Initialize the reminder queue
@@ -17,6 +18,7 @@ reminderQueue.process(async (job) => {
 
   try {
     await checkUpcomingReminderAutoAssist(); 
+    await checkUpcomingEvents();
   } catch (error) {
     console.error("Error processing reminder job:", error.message);
   }
