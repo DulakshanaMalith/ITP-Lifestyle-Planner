@@ -50,7 +50,7 @@ import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
 
-<<<<<<< HEAD
+
 //shop Smart
 import AddingMeeting from './components/shopSmart/AddMeeting.js';
 import AddingOccasion from './components/shopSmart/AddOccasion';
@@ -60,7 +60,7 @@ import AddingEvent from './components/shopSmart/AddEvent';
 import AddingMedical from './components/shopSmart/AddMedical';
 import ShopSmart from './components/shopSmart/ShopSmart';
 import Ms from './components/shopSmart/Ms';
-=======
+
 
 
 import PaymentForm from './PayTrack/components/PaymentForm.js';
@@ -73,7 +73,6 @@ import Cardetails from './PayTrack/pages/Cardetails';
 import PayTrackHome from './PayTrack/components/PayTrackHome';
 
 
->>>>>>> main
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
