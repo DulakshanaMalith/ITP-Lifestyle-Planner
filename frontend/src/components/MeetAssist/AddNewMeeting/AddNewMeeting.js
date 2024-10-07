@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import MeetNav from '../MeetNav/MeetNav';
+import MeetNav from '../../Nav/Nav';
 import Footer from '../../Footer/Footer';
 
 
