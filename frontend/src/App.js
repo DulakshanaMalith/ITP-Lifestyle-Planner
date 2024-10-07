@@ -50,6 +50,20 @@ import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
 
+import Services from "./components/Services";
+import AddReminder from './components/AddReminder';
+import ReminderList from './components/ReminderList';
+import UpdateReminder from './components/UpdateReminder';
+import HealthDataAdd from "./components/HealthDataAdd";
+import HealthDataView from "./components/HealthDataView";
+import UpdateHealthData from "./components/UpdateHealthData";
+import HealthDataDashboard from "./components/HealthDataDashboard";
+import HomePage from "./components/HomePage";
+import EmergencyContacts from "./components/EmergencyContacts";
+import DoctorAppointments from "./components/DoctorAppointments";
+import OrderPrescription from "./components/PrescriptionOrder";
+import PatientCare from "./components/PatientCare"; 
+
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -158,6 +172,23 @@ function App() {
         <Route path="/viewguest" element={<GuestList />} />
         <Route path="/editguest/:id" element={<UpdateGuest />} />
         <Route path="/sendinvitation/:id" element={<Invitation />} />
+
+
+
+        <Route path="/helthmatehome" element={<HomePage />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+            <Route path="/doctor-appointments" element={<DoctorAppointments />} />
+            <Route path="/prescription-order" element={<OrderPrescription />} />
+            <Route path="/remainderlist" element={<ReminderList />} />
+            <Route path="/add" element={<AddReminder />} />
+            <Route path="/update/:id" element={<UpdateReminder />} />
+
+            <Route path="/addhealthdata" element={<HealthDataAdd />} />
+            <Route path="/viewhealthdata" element={<HealthDataView />} />
+            <Route path="/updatehealthdata/:id" element={<UpdateHealthData />} />
+            <Route path="/dashboard" element={<HealthDataDashboard />} />
+            <Route path="/patient-care" element={<PatientCare />} />
 
         </Routes>
       </div>
