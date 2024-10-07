@@ -8,6 +8,8 @@ const {scheduleReminderJob} = require('./Reminder/reminderQueue')
 //require('./scheduler');
 require('dotenv').config();
 
+
+//reminder 
 scheduleReminderJob();
 
 ///reruire 8 funtions routes.....................
@@ -47,6 +49,7 @@ const CreateItineraryRoute = require("./routes/CreateItineraryRoute");
 const activityRoutes = require("./routes/activityRoutes");
 const expensesRoutes = require("./routes/expensesRoutes");
 const guestListRoutes = require('./routes/guestListRoutes');
+const invitationRoutes = require('./routes/InvitationRoute');
 
 //eventMinder
 const eventMinderReminderRoutes = require("./routes/eventMinderReminderRoutes");
@@ -106,6 +109,7 @@ app.use('/api',CreateItineraryRoute);
 app.use('/api', activityRoutes);
 app.use('/api', expensesRoutes);
 app.use('/api', guestListRoutes);
+app.use('/api', invitationRoutes);
 
 //shop smart
 app.use('/api/todos', todoRoutes); 
