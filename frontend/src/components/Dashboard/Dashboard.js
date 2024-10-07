@@ -37,7 +37,7 @@ const Dashboard = () => {
                 gap: '20px' 
             }}>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/autoAssist')} 
                     style={buttonStyle}>
                     Auto Assist
                 </button>
