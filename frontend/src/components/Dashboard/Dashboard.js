@@ -47,7 +47,7 @@ const Dashboard = () => {
                     Shop Smart
                 </button>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/paymenthome')} 
                     style={buttonStyle}>
                     Pay Track
                 </button>
