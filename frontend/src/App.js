@@ -22,19 +22,7 @@ import HealthDataAdd from './components/HealthMate/HealthDataAdd';
 import HealthDataView from './components/HealthMate/HealthDataView';
 import UpdateHealthData from './components/HealthMate/UpdateHealthData';
 import HealthDataDashboard from './components/HealthMate/HealthDataDashboard';
-import Main from './components/eventMinder/Mainpage/Main';
-import AddSpecialDayForm from './components/eventMinder/add/AddSpecialDayForm';
-import SecondPage from './components/eventMinder/secondPage/SecondPage';
-import Bdays from './components/eventMinder/birthday/bdays';
-import ViweBday from './components/eventMinder/viwe/ViweBday';
-import ViewAnniversaries from './components/eventMinder/viwe/ViewAnniversaries';
-import Anniversaries from './components/eventMinder/anniversaries/Anniversaries';
-import Mdates from './components/eventMinder/mdates/Mdates';
-import ViewMemorialDay from './components/eventMinder/viwe/ViewMemorialDay';
-import Otherday from './components/eventMinder/otherSpecialDays/Otherday';
-import ViewOtherSpecialDays from './components/eventMinder/viwe/ViewOtherSpecialDays';
-import SendWishAndGift from './components/eventMinder/Giftandwish/SendWishAndGift';
-import GiftOptions from './components/eventMinder/Giftandwish/GiftOptions';
+
 // import Nav from './components/AutoAssist/Nav.js';
 // import Footer from './components/AutoAssist/Footer';
 import Home from './components/AutoAssist/AAhome';
@@ -46,6 +34,22 @@ import './App.css';
 import './components/AutoAssist/App.css'
 import ReminderForm from './components/AutoAssist/ReminderForm.js';
 
+//event planner
+import EHome from './components/eventPlanner/EventPlannerHome/EventPlannerHome';
+import EventsHome from './components/eventPlanner/Event/EventHome';
+import AddEvent from './components/eventPlanner/Event/AddEvent';
+import ShowDeleteEvent from './components/eventPlanner/Event/ShowDeleteEvent';
+import EditEvent from './components/eventPlanner/Event/EditEvent';
+import CreateItinerary from './components/eventPlanner/Itinerary/CreateItinerary';
+import CreatedItineraryMange from './components/eventPlanner/Itinerary/CreatedItineraryMange';
+import Activity from './components/eventPlanner/Itinerary/Activity';
+import Expenses from './components/eventPlanner/TrackExpenses/Expenses';
+import ManageExpenses from './components/eventPlanner/TrackExpenses/ManageExpenses';
+import ViewExpenses from './components/eventPlanner/TrackExpenses/ViewExpenses';
+import AddGuest from './components/eventPlanner/GuestList/AddGuest';
+import GuestList from './components/eventPlanner/GuestList/GuestList';
+import UpdateGuest from './components/eventPlanner/GuestList/UpdateGuest';
+import Invitation from './components/eventPlanner/GuestList/Invitation';
 
 
 //import IncomeList from './pages/IncomeList'; 
@@ -133,36 +137,28 @@ function App() {
           <Route path="/dashboard" element={<HealthDataDashboard/>} />
 
 
-           {/* Navigation to Event-minder */}
-           <Route path="/event-minder-home" element={<Main/>} />
-           
-        {/* Second page */}
-        <Route path="/secondpage" element={<SecondPage/>} />
-
-        {/* Birthday-related routes */}
-        <Route path="/birthday" element={<Bdays/>} />
-        <Route path="/birthday/reminder" element={<ViweBday/>} /> 
-
-        {/* Anniversaries-related routes */}
-        <Route path="/anniversaries" element={<Anniversaries/>} />
-        <Route path="/anniversaries/reminder" element={<ViewAnniversaries/>} />
-
-        {/* Memorial dates-related routes */}
-        <Route path="/mdates" element={<Mdates/>} />
-        <Route path="/mdates/reminder" element={<ViewMemorialDay/>} />
-
-        {/* Other special days-related routes */}
-        <Route path="/otherday" element={<Otherday/>} />
-        <Route path="/otherday/reminder" element={<ViewOtherSpecialDays/>} />
-
-       {/* Form to add special days */}
-       <Route path="/addspecialday" element={<AddSpecialDayForm/>} />
-        
-        {/* Sending wishes and gift options */}
-        <Route path="/sendwishandgift" element={<SendWishAndGift/>} /> 
-        <Route path="/gift-options" element={<GiftOptions/>} /> 
 
 
+       
+      
+ 
+
+        {/* event planner*/}
+        <Route path="/mainhome" element={<EHome />} />
+        <Route path="/eventhome" element={<EventsHome />} /> 
+        <Route path="/add-event" element={<AddEvent />} />
+        <Route path="/events/:id" element={<ShowDeleteEvent />} />
+        <Route path="/edit/:id" element={<EditEvent />} />
+        <Route path="/createitinerary" element={<CreateItinerary />} />
+        <Route path="/CreatedItineraryMange" element={<CreatedItineraryMange />} />
+        <Route path="/planmore" element={<Activity />} />
+        <Route path="/expenses" element={<Expenses />} />
+        <Route path="/gotrackexpense" element={<ManageExpenses />} />
+        <Route path="/viewexpenses" element={<ViewExpenses />} />
+        <Route path="/addguest" element={<AddGuest />} />
+        <Route path="/viewguest" element={<GuestList />} />
+        <Route path="/editguest/:id" element={<UpdateGuest />} />
+        <Route path="/sendinvitation/:id" element={<Invitation />} />
 
         </Routes>
       </div>
