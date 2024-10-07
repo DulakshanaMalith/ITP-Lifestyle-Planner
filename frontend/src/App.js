@@ -50,6 +50,7 @@ import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
 
+<<<<<<< HEAD
 import Services from "./components/Services";
 import AddReminder from './components/AddReminder';
 import ReminderList from './components/ReminderList';
@@ -63,6 +64,31 @@ import EmergencyContacts from "./components/EmergencyContacts";
 import DoctorAppointments from "./components/DoctorAppointments";
 import OrderPrescription from "./components/PrescriptionOrder";
 import PatientCare from "./components/PatientCare"; 
+=======
+
+//shop Smart
+import AddingMeeting from './components/shopSmart/AddMeeting.js';
+import AddingOccasion from './components/shopSmart/AddOccasion';
+import AddingVehicle from './components/shopSmart/AddVehicle';
+import AddingTodo from './components/shopSmart/AddTodo';
+import AddingEvent from './components/shopSmart/AddEvent';
+import AddingMedical from './components/shopSmart/AddMedical';
+import ShopSmart from './components/shopSmart/ShopSmart';
+import Ms from './components/shopSmart/Ms';
+
+
+
+import PaymentForm from './PayTrack/components/PaymentForm.js';
+import UpdatePayment from './PayTrack/components/UpdatePayment';
+import AddpayReminder from './PayTrack/components/payAddReminder';
+import AddCard from './PayTrack/components/AddCard';
+import CardList from './PayTrack/components/CardList';
+import Paymenthome from './PayTrack/pages/paymenthome';
+import Cardetails from './PayTrack/pages/Cardetails';
+import PayTrackHome from './PayTrack/components/PayTrackHome';
+
+
+>>>>>>> main
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
@@ -138,8 +164,14 @@ function App() {
 
 
            
-
-        
+        <Route path="/payments" element={<PaymentForm />} />
+        <Route path="/update-payment/:id" element={<UpdatePayment />} />
+        <Route path="/add-payreminder" element={<AddpayReminder />} />
+        <Route path="/add-card" element={<AddCard />} />
+        <Route path="/card" element={<CardList />} />
+        <Route path="/paymenthome" element={<PayTrackHome />} />
+        <Route path="/add-payment" element={<Paymenthome />} />
+        <Route path="/cardetails" element={<Cardetails />} />
 
 
           {/*Financeguard routes*/}
@@ -173,6 +205,7 @@ function App() {
         <Route path="/editguest/:id" element={<UpdateGuest />} />
         <Route path="/sendinvitation/:id" element={<Invitation />} />
 
+<<<<<<< HEAD
 
 
         <Route path="/helthmatehome" element={<HomePage />} />
@@ -189,6 +222,17 @@ function App() {
             <Route path="/updatehealthdata/:id" element={<UpdateHealthData />} />
             <Route path="/dashboard" element={<HealthDataDashboard />} />
             <Route path="/patient-care" element={<PatientCare />} />
+=======
+           {/* shop Smart*/}
+        <Route path="/shopsmart" element={<ShopSmart />} />
+        <Route path="/meetingssmart" element={<AddingMeeting />} />
+        <Route path="/occationsmart" element={<AddingOccasion />} />
+        <Route path="/vehiclesmart" element={<AddingVehicle />} />
+        <Route path="/todosmart" element={<AddingTodo />} />
+        <Route path="/eventsmart" element={<AddingEvent />} />
+        <Route path="/medicalsmart" element={<AddingMedical />} />
+        <Route path="/Ms" element={<Ms />} />
+>>>>>>> main
 
         </Routes>
       </div>

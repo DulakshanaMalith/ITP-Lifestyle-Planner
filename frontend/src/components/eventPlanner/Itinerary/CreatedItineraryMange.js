@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; 
 import { FaSearch } from 'react-icons/fa'; 
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./CreatedItineraryMange.css";
 
 const CreatedItineraryMange = () => {
@@ -87,8 +89,10 @@ const CreatedItineraryMange = () => {
   );
 
   return (
-   
+    <div className="itinerary-mana">
+    <Nav/>
         <div className="itinerary-management">
+          
           <h1 className="itinerary-title">Your itineraries</h1>
           
           <div className="itinerary-search-container">
@@ -114,6 +118,8 @@ const CreatedItineraryMange = () => {
               </div>
             ))
           )}
+          </div>
+          <Footer/>
         </div>
   
   );

@@ -38,23 +38,24 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  background-color: rgb(19, 150, 157);
 }
 
-.btn-primary {
-  background-color: #022b3a;
-  color: white;
+.btn-primary-income {
+  background-color: #f0f0f0;
+ color: #bfdbf7;
 }
 
-.btn-primary:hover {
-  background-color: #044a5b;
+.btn-primary-income:hover {
+  background-color: #f0f0f0;
 }
 
-.btn-secondary {
-  background-color: #ffffff;
-  color: black;
+.btn-secondary-income {
+  background-color: #f0f0f0;
+  color: #bfdbf7;
 }
 
-.btn-secondary:hover {
+.btn-secondary-income:hover {
   background-color: #f0f0f0;
 }
 

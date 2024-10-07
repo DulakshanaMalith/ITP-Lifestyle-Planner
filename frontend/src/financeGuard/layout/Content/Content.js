@@ -1,6 +1,5 @@
 import "./Content.css";
 import '../../Allcard.css'
-import Header from "../Header";
 import MainBanner from "../MainBanner";
 import WelcomeSection from '../WelcomeSection';
 import About from '../About';

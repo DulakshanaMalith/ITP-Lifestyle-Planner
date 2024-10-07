@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './Expenses.css'; 
 
 function Expenses() {
@@ -58,8 +60,10 @@ function Expenses() {
   };
 
   return (
-
+    <div className='expenses-wra'>
+<Nav/>
         <div className='expenses-wrapper'>
+          
           <div className="expenses-tracking-container">
             <h1 className="expenses-title">Track Your Expenses</h1>
             <p className="expensesevent-description">
@@ -106,6 +110,8 @@ function Expenses() {
               </button>
             </form>
           </div>
+          </div>
+          <Footer/>
         </div>
   
   );

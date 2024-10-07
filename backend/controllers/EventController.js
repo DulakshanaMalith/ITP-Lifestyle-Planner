@@ -1,8 +1,19 @@
 // controllers/eventController.js
 const Event = require('../models/Event');
 
+// Utility function to validate dateTime
+const isValidDateTime = (dateTime) => {
+    const now = new Date();
+    return new Date(dateTime) > now; // Check if the dateTime is in the future
+};
+
 exports.addEvent = async (req, res) => {
     const { title, dateTime, description } = req.body;
+
+    // Validation for dateTime
+    if (!isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     try {
         const event = new Event({
@@ -29,6 +40,11 @@ exports.getUserEvents = async (req, res) => {
 
 exports.updateEvent = async (req, res) => {
     const { title, dateTime, description } = req.body;
+
+    // Validation for dateTime
+    if (dateTime && !isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     try {
         const event = await Event.findByIdAndUpdate(req.params.id, { title, dateTime, description }, { new: true });

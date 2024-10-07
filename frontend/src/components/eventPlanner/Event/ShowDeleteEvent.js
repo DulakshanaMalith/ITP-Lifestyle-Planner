@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa'; 
 import Swal from 'sweetalert2'; 
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './ShowDeleteEvent.css'; 
 
 function ShowDeleteEvent() {
@@ -68,41 +70,49 @@ function ShowDeleteEvent() {
     if (loading) return <div className="load">Loading...</div>;
 
     return (
-      <div className="event-list-container">
-        <h1 className="list-title">Your Upcoming Events</h1>
-        <div className="eventsearch-container">
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="eventsearch-box"
-          />
-          <FaSearch className="eventsearch-icon" /> 
+      <div className='showdeleEvet'>
+    <Nav/>
+    <div>
+        <div className="event-list-container">
+            <h1 className="list-title">Your Upcoming Events</h1>
+            <div className="eventsearch-container">
+                <input
+                    type="text"
+                    placeholder="Search events..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="eventsearch-box"
+                />
+                <FaSearch className="eventsearch-icon" />
+            </div>
+            <ul className="event-list">
+                {filteredEvents.length > 0 ? (
+                    filteredEvents.map(event => (
+                        <li key={event._id} className="event-card">
+                            <div className="event-info">
+                                <h3 className="event-header">{event.name}</h3>
+                                <p className="event-date">Date: {new Date(event.date).toLocaleDateString()}</p>
+                                <p className="event-time">Time: {event.time}</p>
+                                <p className="event-location">Location: {event.location}</p>
+                                <p className="event-attendees">Total Guests: {event.totalGuests}</p>
+                                <p className="event-note">Note: {event.note}</p>
+                                <div className="event-buttons">
+                                    <button onClick={() => handleEdit(event._id)} className="event-edit-btn">Edit</button>
+                                    <button onClick={() => handleDelete(event._id)} className="event-delete-btn">Delete</button>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                ) : (
+                    <p className="no-events-message">No events found.</p>
+                )}
+            </ul>
         </div>
-        <ul className="event-list">
-          {filteredEvents.length > 0 ? (
-            filteredEvents.map(event => (
-              <li key={event._id} className="event-card">
-                <div className="event-info">
-                  <h3 className="event-header">{event.name}</h3>
-                  <p className="event-date">Date: {new Date(event.date).toLocaleDateString()}</p>
-                  <p className="event-time">Time: {event.time}</p>
-                  <p className="event-location">Location: {event.location}</p>
-                  <p className="event-attendees">Total Guests: {event.totalGuests}</p>
-                  <p className="event-note">Note: {event.note}</p>
-                  <div className="event-buttons">
-                    <button onClick={() => handleEdit(event._id)} className="event-edit-btn">Edit</button>
-                    <button onClick={() => handleDelete(event._id)} className="event-delete-btn">Delete</button>
-                  </div>
-                </div>
-              </li>
-            ))
-          ) : (
-            <p className="no-events-message">No events found.</p>
-          )}
-        </ul>
-      </div>
+    </div>
+    <Footer/>
+</div>
+
+     
   );
 };
 

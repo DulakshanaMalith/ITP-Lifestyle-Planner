@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa'; 
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./GuestList.css";
 
 const GuestList = () => {
@@ -71,8 +73,10 @@ const GuestList = () => {
   );
 
   return (
-   
+   <div className='guest-list'>
+     <Nav/>
     <div className="guest-list-wrapper">
+     
       <h2 className="guest-list-title">Guest List</h2>
       {error && <p className="guest-list-error">{error}</p>}
       <div className="guest-list-search">
@@ -111,6 +115,8 @@ const GuestList = () => {
           ))}
         </tbody>
       </table>
+      </div>
+      <Footer/>
     </div>
 
   );

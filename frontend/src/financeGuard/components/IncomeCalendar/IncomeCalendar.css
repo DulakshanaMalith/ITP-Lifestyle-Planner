@@ -31,6 +31,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
     transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effects */
     margin-top: 40px;
+    margin-left: 15%;
 }
 
 .income-search-input:focus {

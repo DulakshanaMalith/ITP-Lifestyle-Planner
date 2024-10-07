@@ -39,7 +39,7 @@ const loanRoutes = require('./routes/loanRoutes');
 const todoRoutes = require("./routes/TodoRoute");
 const eventRoutes = require('./routes/EventRoute');
 const MeetingRoute = require('./routes/MeetingRoute');
-const vehicleRoute = require('./routes/VehicleRoute');
+const VehicleRoute = require('./routes/VehicleRoute');
 const occasionRoutes = require('./routes/OccasionRoute');
 const hospitalTasksRouter = require('./routes/hospitalTasksRoute');
 
@@ -115,7 +115,7 @@ app.use('/api', invitationRoutes);
 app.use('/api/todos', todoRoutes); 
 app.use('/api/event', eventRoutes);
 app.use('/api/meetings', MeetingRoute);
-app.use('/api/vehicle', vehicleRoutes);
+app.use('/api/vehicle', VehicleRoute);
 app.use('/api/occasions', occasionRoutes);
 app.use('/api/medicals', hospitalTasksRouter);
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./AddGuest.css";
 
 // Validation functions
@@ -133,7 +135,8 @@ const AddGuest = () => {
   };
 
   return (
-    <div>
+    <div classname="add-guest">
+      <Nav/>
         <div className="addguest-container">
           <div className="addguest-header">
             <h2 className="addguest-header-h2">Create Guest List</h2>
@@ -228,6 +231,7 @@ const AddGuest = () => {
             <button type="submit" className="addguest-submit">Add Guest</button>
           </form>
         </div>
+        <Footer/>
     </div>
   );
 };
