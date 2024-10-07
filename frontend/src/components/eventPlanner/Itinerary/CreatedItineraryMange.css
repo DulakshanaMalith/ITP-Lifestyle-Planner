@@ -101,7 +101,7 @@
     margin-left: 30px;
 }
 
-.plan-more-button, .delete-button {
+.plan-more-button, .itenarydelete-button {
     padding: 10px 16px;
     border: none;
     border-radius: 6px;
@@ -121,11 +121,11 @@
     background-color: #1a2d4e;
 }
 
-.delete-button {
+.itenarydelete-button {
     background-color: #dc3545;
     color: #fff;
 }
 
-.delete-button:hover {
+.itenarydelete-button:hover {
     background-color: #c82333;
 }

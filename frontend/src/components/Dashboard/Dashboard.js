@@ -57,7 +57,7 @@ const Dashboard = () => {
                     Finance Guard
                 </button>
                 <button 
-                    onClick={() => handleButtonClick('/Health-home')} 
+                    onClick={() => handleButtonClick('/helthmatehome')} 
                     style={buttonStyle}>
                     Health Mate
                 </button>
