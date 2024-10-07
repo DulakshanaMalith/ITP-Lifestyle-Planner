@@ -50,6 +50,16 @@ import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
 
+//shop Smart
+import AddingMeeting from './components/shopSmart/AddMeeting.js';
+import AddingOccasion from './components/shopSmart/AddOccasion';
+import AddingVehicle from './components/shopSmart/AddVehicle';
+import AddingTodo from './components/shopSmart/AddTodo';
+import AddingEvent from './components/shopSmart/AddEvent';
+import AddingMedical from './components/shopSmart/AddMedical';
+import ShopSmart from './components/shopSmart/ShopSmart';
+import Ms from './components/shopSmart/Ms';
+
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -158,6 +168,16 @@ function App() {
         <Route path="/viewguest" element={<GuestList />} />
         <Route path="/editguest/:id" element={<UpdateGuest />} />
         <Route path="/sendinvitation/:id" element={<Invitation />} />
+
+           {/* shop Smart*/}
+        <Route path="/shopsmart" element={<ShopSmart />} />
+        <Route path="/meetingssmart" element={<AddingMeeting />} />
+        <Route path="/occationsmart" element={<AddingOccasion />} />
+        <Route path="/vehiclesmart" element={<AddingVehicle />} />
+        <Route path="/todosmart" element={<AddingTodo />} />
+        <Route path="/eventsmart" element={<AddingEvent />} />
+        <Route path="/medicalsmart" element={<AddingMedical />} />
+        <Route path="/Ms" element={<Ms />} />
 
         </Routes>
       </div>
