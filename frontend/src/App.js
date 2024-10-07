@@ -35,6 +35,19 @@ import Otherday from './components/eventMinder/otherSpecialDays/Otherday';
 import ViewOtherSpecialDays from './components/eventMinder/viwe/ViewOtherSpecialDays';
 import SendWishAndGift from './components/eventMinder/Giftandwish/SendWishAndGift';
 import GiftOptions from './components/eventMinder/Giftandwish/GiftOptions';
+// import Nav from './components/AutoAssist/Nav.js';
+// import Footer from './components/AutoAssist/Footer';
+import Home from './components/AutoAssist/AAhome';
+import VehiclePage from './components/pages/VehiclePage';
+import ReminderPage from './components/pages/ReminderPage';
+import ServiceStationPage from './components/pages/ServiceStationPage';
+import useAppData from './components/hooks/useAppData.js';
+import './App.css';
+import './components/AutoAssist/App.css'
+import ReminderForm from './components/AutoAssist/ReminderForm.js';
+
+
+
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -43,9 +56,30 @@ import GiftOptions from './components/eventMinder/Giftandwish/GiftOptions';
 //import IncomeSet from './components/Incomeset';
 
 function App() {
+  const appData = useAppData();
+
   return (
 
     <Router>
+      {/* <Nav />
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/vehicle-form"
+            element={<VehiclePage {...appData} />}
+          />
+          <Route
+            path="/reminders"
+            element={<ReminderPage {...appData} />}
+          />
+          <Route
+            path="/service-stations"
+            element={<ServiceStationPage {...appData} />}
+          />
+        </Routes>
+        <Footer />
+      </div> */}
       <div>
      
       
@@ -53,6 +87,23 @@ function App() {
           <Route path="/" element={< Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} /> 
+
+          <Route path="/autoAssist" element={<Home />} />
+          <Route
+            path="/vehicle-form"
+            element={<VehiclePage {...appData} />}
+          />
+          <Route
+            path="/reminders"
+            element={<ReminderPage {...appData} />}
+          />
+          <Route
+            path="/service-stations"
+            element={<ServiceStationPage {...appData} />}
+          />
+          {/* <Route
+            path="/reminder-form"
+            element={<ReminderForm />} /> */}
 
 
 
@@ -116,6 +167,9 @@ function App() {
         </Routes>
       </div>
     </Router>
+
+
+
   );
 }
 
