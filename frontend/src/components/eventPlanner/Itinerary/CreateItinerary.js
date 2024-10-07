@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; 
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./CreateItinerary.css";
 
 const CreateItinerary = () => {
@@ -79,8 +81,10 @@ const CreateItinerary = () => {
   };
 
   return (
-  
+    <div className="center-evp">
+       <Nav/>
         <div className="center-container-evp">
+          
           <div className="itinerary-container-evp">
             <h1 className="itinerary-title-evp">Create an Itinerary</h1>
             <h3 className="itinerary-subtitle-evp">Start planning your events step by step efficiently</h3>
@@ -124,6 +128,8 @@ const CreateItinerary = () => {
               </div>
             </form>
           </div>
+          </div>
+          <Footer/>
         </div>
 
   );

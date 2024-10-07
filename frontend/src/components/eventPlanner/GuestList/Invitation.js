@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './Invitation.css';
 
 const Invitation = () => {
@@ -73,8 +75,10 @@ const Invitation = () => {
   };
 
   return (
-
+    <div className='invitation'>
+    <Nav/>
         <div className="invitation-form">
+          
           <h2 className="invitation-form-h2">Invitation</h2>
           <p className="invitation-form-p">Create and send your Invitation</p>
 
@@ -93,6 +97,8 @@ const Invitation = () => {
           <button onClick={handleSendInvitation} className="invitation-send-button">
             SEND
           </button>
+          </div>
+          <Footer/>
         </div>
 
   );

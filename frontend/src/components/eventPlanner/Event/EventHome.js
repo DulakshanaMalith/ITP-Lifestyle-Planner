@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./EventHome.css";
 
 function EventHome() {
@@ -90,6 +92,7 @@ function EventHome() {
   return (
   
         <div className="eventpl-manager-wrapper">
+          <Nav/>
           <div className="eventpl-manager-container">
             <div className="countdown-container-ep">
               {nearestEventName && (
@@ -137,6 +140,7 @@ function EventHome() {
               </Link>
             </div>
           </div>
+          <Footer/>
         </div>
   
   );

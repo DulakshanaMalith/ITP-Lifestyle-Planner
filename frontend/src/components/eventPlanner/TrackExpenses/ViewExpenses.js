@@ -3,6 +3,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FaTrash } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa'; 
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./ViewExpenses.css";
 
 const ViewExpenses = () => {
@@ -110,8 +112,10 @@ const ViewExpenses = () => {
     if (error) return <p>{error}</p>;
 
     return (
-    
+        <div className="viewexpenses-conta">
+        <Nav/>
                 <div className="viewexpenses-container">
+                  
                     <h1 className="viewexpenses-title">All Expenses</h1>
                     <div className='expenses-search'>
                         <input
@@ -177,6 +181,8 @@ const ViewExpenses = () => {
                             ))}
                         </tbody>
                     </table>
+                    </div>
+                    <Footer/>
                 </div>
       
     );

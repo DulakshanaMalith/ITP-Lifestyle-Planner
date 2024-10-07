@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; 
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './EditEvent.css';
 
 function EditEvent() {
@@ -130,8 +132,10 @@ function EditEvent() {
   if (!event) return <div>Event not found.</div>;
 
   return (
- 
+ <div className='editevt0'>
+    <Nav/>
       <div className="edit-event-wrapper">
+      
         <div className="edit-event-container">
           <div className="edit-event-form-section">
             <h1 className="edit-event-title">Edit Event</h1>
@@ -224,7 +228,10 @@ function EditEvent() {
             </form>
           </div>
         </div>
+       
       </div>
+       <Footer/>
+       </div>
   
   );
 }

@@ -1,10 +1,29 @@
 const Todo = require('../models/Todo');
 
+
+// Function to validate the dateTime
+const isValidDateTime = (dateTime) => {
+    const now = new Date();
+    const inputDateTime = new Date(dateTime);
+    return inputDateTime > now; // Ensure the dateTime is in the future
+};
+
+// Add a new todo
+// Add a new todo
 const addTodo = async (req, res) => {
     const { title, dateTime, description } = req.body;
 
+    // Validation
+    if (!title || typeof title !== 'string' || title.trim() === '') {
+        return res.status(400).json({ message: 'Title is required and must be a non-empty string.' });
+    }
+
+    if (!dateTime || !isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'The date and time must be a valid future date.' });
+    }
+
     const todo = new Todo({
-        user: req.user.id, // Get logged-in user ID
+        user: req.user.id,
         title,
         dateTime,
         description
@@ -12,12 +31,15 @@ const addTodo = async (req, res) => {
 
     try {
         const createdTodo = await todo.save();
+
         res.status(201).json(createdTodo);
     } catch (error) {
         res.status(400).json({ message: 'Invalid todo data' });
     }
 };
 
+
+// Get todos for the logged-in user
 const getUserTodos = async (req, res) => {
     try {
         const todos = await Todo.find({ user: req.user.id }).populate('user', 'name email');
@@ -27,9 +49,19 @@ const getUserTodos = async (req, res) => {
     }
 };
 
+// Edit a todo
 const editTodo = async (req, res) => {
     const { title, dateTime, description } = req.body;
     const todoId = req.params.id;
+
+    // Validation
+    if (title && (typeof title !== 'string' || title.trim() === '')) {
+        return res.status(400).json({ message: 'Title must be a non-empty string.' });
+    }
+
+    if (dateTime && !isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'The date and time must be a valid future date.' });
+    }
 
     try {
         const updatedTodo = await Todo.findByIdAndUpdate(
@@ -48,6 +80,7 @@ const editTodo = async (req, res) => {
     }
 };
 
+// Delete a todo
 const deleteTodo = async (req, res) => {
     const todoId = req.params.id;
 
@@ -64,4 +97,5 @@ const deleteTodo = async (req, res) => {
     }
 };
 
-module.exports = { addTodo, getUserTodos, editTodo, deleteTodo };
+
+module.exports = { addTodo, getUserTodos, editTodo, deleteTodo};
