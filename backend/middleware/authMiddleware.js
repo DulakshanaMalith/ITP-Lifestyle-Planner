@@ -12,6 +12,7 @@ function authenticateToken(req, res, next) {
       console.error('JWT Verification Error:', err); 
       return res.sendStatus(403);
     }
+    console.log('Authenticated User:', req.user);
     req.user = user;
     next();
   });
