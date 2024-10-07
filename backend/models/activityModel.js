@@ -5,6 +5,8 @@ const activitySchema = new mongoose.Schema({
     date: String,
     time: String,
     itineraryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Itinerary',required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+   
 
 });
 

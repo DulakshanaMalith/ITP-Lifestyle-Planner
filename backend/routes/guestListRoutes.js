@@ -8,7 +8,9 @@ const {
   deleteGuest
 } = require('../controllers/guestListController');
 
+const { authenticateToken } = require('../middleware/authMiddleware');
 
+router.use(authenticateToken);
 router.post('/guests', createGuest);
 router.get('/guests', getAllGuests);
 router.get('/guests/:id',getGuestById);
