@@ -17,6 +17,7 @@ const ServiceStationForm = ({ saveServiceStation, currentServiceStation }) => {
     };
 
     return (
+        <div className='vehicleform'>
         <form onSubmit={handleSubmit}>
             <label>
                 Service Station Name:
@@ -28,6 +29,7 @@ const ServiceStationForm = ({ saveServiceStation, currentServiceStation }) => {
             </label>
             <button type="submit">Save Service Station</button>
         </form>
+        </div>
     );
 };
 

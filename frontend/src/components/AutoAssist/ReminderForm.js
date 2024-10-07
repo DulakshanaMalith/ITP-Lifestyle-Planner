@@ -105,6 +105,7 @@ const ReminderForm = ({ saveReminder, vehicles = [], currentReminder, selectedSe
   };
 
   return (
+    <div className='vehicleform'>
     <form onSubmit={handleSubmit}>
       <label>
         Vehicle Name:
@@ -182,6 +183,7 @@ const ReminderForm = ({ saveReminder, vehicles = [], currentReminder, selectedSe
       </label>
       <button type="submit">Save Reminder</button>
     </form>
+    </div>
   );
 };
 
