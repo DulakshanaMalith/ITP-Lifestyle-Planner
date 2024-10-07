@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './AddEvent.css';
 
 const AddEvent = () => {
@@ -135,7 +137,9 @@ const AddEvent = () => {
   }
 
   return (
-  
+  <div className='addingEventdiv'>
+      <Nav/>
+ 
       <div className="add-event-wrapper">
         <div className="add-event-container">
           <div className="event-form-section">
@@ -233,6 +237,8 @@ const AddEvent = () => {
             <div className="event-image-overlay"></div>
           </div>
         </div>
+        </div>
+        <Footer/>
       </div>
   
   );
