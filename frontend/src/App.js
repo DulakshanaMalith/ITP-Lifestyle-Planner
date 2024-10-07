@@ -41,6 +41,17 @@ import IncomeCalendar from './financeGuard/components/IncomeCalendar/IncomeCalen
 import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
+
+
+import PaymentForm from './PayTrack/components/PaymentForm.js';
+import UpdatePayment from './PayTrack/components/UpdatePayment';
+import AddpayReminder from './PayTrack/components/payAddReminder';
+import AddCard from './PayTrack/components/AddCard';
+import CardList from './PayTrack/components/CardList';
+import Paymenthome from './PayTrack/pages/paymenthome';
+import Cardetails from './PayTrack/pages/Cardetails';
+import PayTrackHome from './PayTrack/components/PayTrackHome';
+
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -127,8 +138,14 @@ function App() {
 
 
            
-
-        
+        <Route path="/payments" element={<PaymentForm />} />
+        <Route path="/update-payment/:id" element={<UpdatePayment />} />
+        <Route path="/add-payreminder" element={<AddpayReminder />} />
+        <Route path="/add-card" element={<AddCard />} />
+        <Route path="/card" element={<CardList />} />
+        <Route path="/paymenthome" element={<PayTrackHome />} />
+        <Route path="/add-payment" element={<Paymenthome />} />
+        <Route path="/cardetails" element={<Cardetails />} />
 
 
           {/*Financeguard routes*/}
