@@ -4,10 +4,11 @@ const cors = require('cors');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const { MONGO_URI } = require('./config');
+const {scheduleReminderJob} = require('./Reminder/reminderQueue')
 //require('./scheduler');
 require('dotenv').config();
 
-
+scheduleReminderJob();
 
 ///reruire 8 funtions routes.....................
 
@@ -72,7 +73,7 @@ app.use(cors());
 
 //routes.......................................
 //login
-app.use('/api/users', userRoutes);
+app.use('/users', userRoutes);
 
 
 //meet-assist
@@ -81,7 +82,7 @@ app.use('/meetShedule', meetSheduleRoutes);
 
 
 //auto-assist
-app.use('/api/vehicles', vehicleRoutes);
+app.use('/api/vehicles', vehicleRoutes); 
 app.use('/api/reminders', reminderRoutes);
 app.use('/api/service-stations', serviceStationRoutes);
 
