@@ -1,8 +1,19 @@
 // controllers/medicalController.js
 const Medical = require('../models/HospitalTask');
 
+// Utility function to validate dateTime
+const isValidDateTime = (dateTime) => {
+    const now = new Date();
+    return new Date(dateTime) > now; // Check if the dateTime is in the future
+};
+
 exports.addMedical = async (req, res) => {
     const { title, dateTime, description } = req.body;
+
+    // Validation for dateTime
+    if (!isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     try {
         const medical = new Medical({
@@ -29,6 +40,11 @@ exports.getUserMedicals = async (req, res) => {
 
 exports.updateMedical = async (req, res) => {
     const { title, dateTime, description } = req.body;
+
+    // Validation for dateTime
+    if (dateTime && !isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     try {
         const medical = await Medical.findByIdAndUpdate(req.params.id, { title, dateTime, description }, { new: true });

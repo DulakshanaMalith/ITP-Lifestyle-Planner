@@ -1,7 +1,19 @@
+// controllers/meetingController.js
 const Meeting = require('../models/Meeting');
+
+// Utility function to validate dateTime
+const isValidDateTime = (dateTime) => {
+    const now = new Date();
+    return new Date(dateTime) > now; // Check if the dateTime is in the future
+};
 
 const addMeeting = async (req, res) => {
     const { title, dateTime, description } = req.body;
+
+    // Validation for dateTime
+    if (!isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     const meeting = new Meeting({
         user: req.user.id, // Get logged-in user ID
@@ -27,10 +39,14 @@ const getUserMeetings = async (req, res) => {
     }
 };
 
-
 const editMeeting = async (req, res) => {
     const { title, dateTime, description } = req.body;
     const meetingId = req.params.id;
+
+    // Validation for dateTime
+    if (dateTime && !isValidDateTime(dateTime)) {
+        return res.status(400).json({ message: 'DateTime must be a valid future date.' });
+    }
 
     try {
         const updatedMeeting = await Meeting.findByIdAndUpdate(

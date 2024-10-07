@@ -1,7 +1,20 @@
 const Vehicle = require('../models/Vehicle');
 
+// Function to validate the date
+const isValidDate = (date) => {
+    const now = new Date();
+    const inputDate = new Date(date);
+    return inputDate > now; // Ensure the date is in the future
+};
+
+// Add a new vehicle
 const addVehicle = async (req, res) => {
     const { title, description, date, time } = req.body;
+
+    // Validate the date
+    if (!isValidDate(date)) {
+        return res.status(400).json({ message: 'The date must be in the future.' });
+    }
 
     const vehicle = new Vehicle({
         user: req.user.id,
@@ -33,6 +46,11 @@ const getUserVehicles = async (req, res) => {
 const editVehicle = async (req, res) => {
     const { title, description, date, time } = req.body;
     const vehicleId = req.params.id;
+
+    // Validate the date
+    if (date && !isValidDate(date)) {
+        return res.status(400).json({ message: 'The date must be in the future.' });
+    }
 
     try {
         const updatedVehicle = await Vehicle.findByIdAndUpdate(
