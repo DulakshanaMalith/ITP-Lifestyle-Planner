@@ -72,7 +72,7 @@ const Dashboard = () => {
                     Meet Assist
                 </button>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/mainhome')} 
                     style={buttonStyle}>
                     Event Planner
                 </button>

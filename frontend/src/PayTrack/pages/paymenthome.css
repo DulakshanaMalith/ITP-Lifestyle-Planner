@@ -74,7 +74,7 @@
 }
 
 /* General button styling */
-button {
+.payment-home-container button {
   margin-top: 10px;
   margin-left: 10px;
   margin-bottom: 30px;
@@ -90,12 +90,12 @@ button {
 }
 
 /* General button hover effect */
-button:hover {
+.payment-home-container button:hover {
   background-color: #ffffff; 
   color: #0d3b66; /* Slightly scale up the button */
 }
 
 
-.button:active {
+.payment-home-container .button:active {
   transform: scale(0.95);
 }

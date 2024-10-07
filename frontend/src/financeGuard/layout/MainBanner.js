@@ -9,8 +9,8 @@ const MainBanner = () => {
         <h1>INTO SHAPE</h1>
         <div className="banner-buttons">
           <Threebuttons/>
-          <button className="btn btn-primary">home page</button>
-          <button className="btn btn-secondary">logout</button>
+          <button className="btn btn-primary-income">home page</button>
+          <button className="btn btn-secondary-income">logout</button>
         </div>
       </div>
     </div>

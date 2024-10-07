@@ -103,6 +103,7 @@ const VehicleForm = ({ saveVehicle, currentVehicle }) => {
     };
 
     return (
+        <div className='vehicleform'>
         <form onSubmit={handleSubmit}>
             <label>
                 Vehicle Brand:
@@ -153,6 +154,7 @@ const VehicleForm = ({ saveVehicle, currentVehicle }) => {
             </label>
             <button className="btn" type="submit">Save Vehicle</button>
         </form>
+        </div>
     );
 };
 
