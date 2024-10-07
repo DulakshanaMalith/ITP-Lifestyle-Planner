@@ -11,6 +11,7 @@ const formatDate = (dateString) => {
   };
   const ReminderList = ({ reminders, setCurrentReminder, deleteReminder }) => {
     return (
+    
         <div className="vehicle-list-container1">
             <h2 className="vehicle-list-title">Your Reminders</h2>
         <ul className="vehicle-list">

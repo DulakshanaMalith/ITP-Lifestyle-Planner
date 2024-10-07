@@ -10,18 +10,7 @@ import UpcomingMeet from './components/MeetAssist/UpcomingMeet/UpcomingMeet';
 import ShowAMeet from './components/MeetAssist/ShowAMeet/ShowAMeet';
 import ChangeMeet from './components/MeetAssist/ChangeMeet/ChangeMeet';
 import MeetSchedule from './components/MeetAssist/MeetSchedule/MeetSchedule';
-import HomePage from './components/HealthMate/HomePage';
-import Services from './components/HealthMate/Services';
-import EmergencyContacts from './components/HealthMate/EmergencyContacts';
-import DoctorAppointments from './components/HealthMate/DoctorAppointments';
-import OrderPrescription from './components/HealthMate/PrescriptionOrder';
-import ReminderList from './components/HealthMate/ReminderList';
-import AddReminder from './components/HealthMate/AddReminder';
-import UpdateReminder from './components/HealthMate/UpdateReminder';
-import HealthDataAdd from './components/HealthMate/HealthDataAdd';
-import HealthDataView from './components/HealthMate/HealthDataView';
-import UpdateHealthData from './components/HealthMate/UpdateHealthData';
-import HealthDataDashboard from './components/HealthMate/HealthDataDashboard';
+
 
 // import Nav from './components/AutoAssist/Nav.js';
 // import Footer from './components/AutoAssist/Footer';
@@ -32,7 +21,26 @@ import ServiceStationPage from './components/pages/ServiceStationPage';
 import useAppData from './components/hooks/useAppData.js';
 import './App.css';
 import './components/AutoAssist/App.css'
-import ReminderForm from './components/AutoAssist/ReminderForm.js';
+
+
+
+//event planner
+import EHome from './components/eventPlanner/EventPlannerHome/EventPlannerHome';
+import EventsHome from './components/eventPlanner/Event/EventHome';
+import AddEvent from './components/eventPlanner/Event/AddEvent';
+import ShowDeleteEvent from './components/eventPlanner/Event/ShowDeleteEvent';
+import EditEvent from './components/eventPlanner/Event/EditEvent';
+import CreateItinerary from './components/eventPlanner/Itinerary/CreateItinerary';
+import CreatedItineraryMange from './components/eventPlanner/Itinerary/CreatedItineraryMange';
+import Activity from './components/eventPlanner/Itinerary/Activity';
+import Expenses from './components/eventPlanner/TrackExpenses/Expenses';
+import ManageExpenses from './components/eventPlanner/TrackExpenses/ManageExpenses';
+import ViewExpenses from './components/eventPlanner/TrackExpenses/ViewExpenses';
+import AddGuest from './components/eventPlanner/GuestList/AddGuest';
+import GuestList from './components/eventPlanner/GuestList/GuestList';
+import UpdateGuest from './components/eventPlanner/GuestList/UpdateGuest';
+import Invitation from './components/eventPlanner/GuestList/Invitation';
+
 
 import Allcard from './financeGuard/layout/Content/Content';
 import Stat from './financeGuard/components/StatisticsChart/StatisticsChart'
@@ -40,6 +48,7 @@ import GP from './financeGuard/components/GoalProgress/GoalProgress'
 import IncomeCalendar from './financeGuard/components/IncomeCalendar/IncomeCalendar';
 import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
+
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
@@ -110,20 +119,8 @@ function App() {
           <Route path="/schedule" element={<MeetSchedule/>}></Route>
           
           
-           {/* Navigation to HealthMate  Page  */}
-           <Route path="/Health-home" element={<HomePage />} />
-           <Route path="/services" element={<Services/>} />
-          <Route path="/emergency-contacts" element={<EmergencyContacts/>} />
-          <Route path="/doctor-appointments" element={<DoctorAppointments/>} />
-          <Route path="/prescription-order" element={<OrderPrescription/>} />
-          <Route path="/remainderlist" element={<ReminderList/>} />
-          <Route path="/add" element={<AddReminder/>} />
-          <Route path="/update/:id" element={<UpdateReminder/>} />
 
-          <Route path="/addhealthdata" element={<HealthDataAdd/>} />
-          <Route path="/viewhealthdata" element={<HealthDataView/>} />
-          <Route path="/updatehealthdata/:id" element={<UpdateHealthData/>} />
-          <Route path="/dashboard" element={<HealthDataDashboard/>} />
+
 
 
            
@@ -140,6 +137,27 @@ function App() {
         <Route path="/netincome" element={<Netincome />} /> 
 
 
+
+       
+      
+ 
+
+        {/* event planner*/}
+        <Route path="/mainhome" element={<EHome />} />
+        <Route path="/eventhome" element={<EventsHome />} /> 
+        <Route path="/add-event" element={<AddEvent />} />
+        <Route path="/events/:id" element={<ShowDeleteEvent />} />
+        <Route path="/edit/:id" element={<EditEvent />} />
+        <Route path="/createitinerary" element={<CreateItinerary />} />
+        <Route path="/CreatedItineraryMange" element={<CreatedItineraryMange />} />
+        <Route path="/planmore" element={<Activity />} />
+        <Route path="/expenses" element={<Expenses />} />
+        <Route path="/gotrackexpense" element={<ManageExpenses />} />
+        <Route path="/viewexpenses" element={<ViewExpenses />} />
+        <Route path="/addguest" element={<AddGuest />} />
+        <Route path="/viewguest" element={<GuestList />} />
+        <Route path="/editguest/:id" element={<UpdateGuest />} />
+        <Route path="/sendinvitation/:id" element={<Invitation />} />
 
         </Routes>
       </div>
