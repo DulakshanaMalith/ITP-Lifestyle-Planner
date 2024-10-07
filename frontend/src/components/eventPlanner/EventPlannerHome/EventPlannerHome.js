@@ -1,5 +1,7 @@
 import React from 'react'; 
 import { useNavigate } from 'react-router-dom';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import "./EventPlannerHome.css";
 
 
@@ -28,6 +30,7 @@ function EventPlannerHome() {
 
   return (
     <div className="container-ep">
+      <Nav/>
       <div className="main-window-ep">
         {/* Fullscreen Main Image with Overlay */}
         <div className="hero-section-ep">
@@ -70,6 +73,7 @@ function EventPlannerHome() {
           </section>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

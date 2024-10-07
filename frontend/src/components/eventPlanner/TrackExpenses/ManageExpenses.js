@@ -4,7 +4,9 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import Swal from 'sweetalert2';
 import { FaEdit, FaTrash } from 'react-icons/fa';
-import logo from '../../assests/logo.png';
+import logo from '../../../MEETIMAGES/Household lifestyle partner-01-01.png';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './ManageExpenses.css';
 
 function ManageExpenses() {
@@ -140,8 +142,10 @@ function ManageExpenses() {
   };
 
   return (
-  
+    <div className="addexpenses-cont">
+    <Nav/>
         <div className="addexpenses-container">
+         
           <h1 className="addexpenses-title">Manage Event Expenses</h1>
 
           <label className="addexpenses-label">
@@ -200,7 +204,8 @@ function ManageExpenses() {
 
           <button className="addexpenses-shopping-button">To Manage Shopping</button>
         </div>
-  
+  <Footer/>
+  </div>
   );
 }
 

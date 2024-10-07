@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './UpdateGuest.css';
 
 // Validation functions
@@ -164,8 +166,10 @@ const UpdateGuest = () => {
   };
 
   return (
-   
+    <div className='update-g'>
+    <Nav/>
     <div className="update-guest-form-wrapper">
+    
       <div className="update-guest-form-container">
         <div className="update-guest-form-header">
           <h2>Update Guest</h2>
@@ -252,6 +256,8 @@ const UpdateGuest = () => {
          
         </form>
       </div>
+      </div>
+      <Footer/>
     </div>
   
   );

@@ -5,7 +5,9 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'; 
 import Swal from 'sweetalert2';
-import logo from "../../assests/logo.png";
+import logo from "../../../MEETIMAGES/Household lifestyle partner-01-01.png";
+import Nav from "../../Nav/Nav";
+import Footer from "../../Footer/Footer";
 import './Activity.css'; 
 
 const Activity = () => {
@@ -173,7 +175,10 @@ const Activity = () => {
 
   return (
    
+    <div className="more-planning">
+    <Nav/>
     <div className="more-planning-container">
+      
       <div className="itinerary-details-box">
         <h1 className="more-planning-title">Plan More</h1>
         <h2 className="itinerary-info-title">Itinerary Details</h2>
@@ -296,6 +301,8 @@ const Activity = () => {
       )}
 
       <button onClick={downloadPDF} className="download-pdf-btn">Download</button>
+      </div>
+      <Footer/>
     </div>
 
   );
