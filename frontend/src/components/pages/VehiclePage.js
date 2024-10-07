@@ -2,8 +2,8 @@
 import React from 'react';
 
 // import { useNavigate } from 'react-router-dom';
-import Nav from '../AutoAssist/Nav';
-import Footer from '../AutoAssist/Footer';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import VehicleForm from '../AutoAssist/VehicleForm';
 import VehicleList from '../AutoAssist/VehicleList';
 import '../AutoAssist/Home.css'

@@ -52,7 +52,7 @@ const Dashboard = () => {
                     Pay Track
                 </button>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/incomemainconteiner')} 
                     style={buttonStyle}>
                     Finance Guard
                 </button>

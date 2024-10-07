@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+
+
 const Login = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -13,9 +15,9 @@ const Login = () => {
     setError(''); 
 
     try {
-      const { data } = await axios.post('/api/users/login', { name, password });
+      const { data } = await axios.post('http://localhost:5000/users/login', { name, password });
       localStorage.setItem('token', data.token);
-      navigate('/home'); 
+      navigate('/incomemainconteiner'); 
     } catch (error) {
       console.error('Error logging in:', error);
       setError('Invalid User Name or password. Please try again.'); 
@@ -25,7 +27,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h1>Login</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>} 
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={submitHandler}>
         <div>
           <label>User Name</label>
