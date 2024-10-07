@@ -42,7 +42,7 @@ const Dashboard = () => {
                     Auto Assist
                 </button>
                 <button 
-                    onClick={() => handleButtonClick()} 
+                    onClick={() => handleButtonClick('/shopsmart')} 
                     style={buttonStyle}>
                     Shop Smart
                 </button>
