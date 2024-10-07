@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MeetNav from '../MeetNav/MeetNav';
+import MeetNav from '../../Nav/Nav';
 import Footer from '../../Footer/Footer';
 
 import mainImage2 from '../../../MEETIMAGES/MAIN2full.jpg';

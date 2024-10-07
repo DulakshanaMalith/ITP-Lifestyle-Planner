@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
+
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,21 +11,17 @@ const Register = () => {
   const [passwordStrength, setPasswordStrength] = useState('');
   const navigate = useNavigate();
 
-  
   const validateName = (name) => {
-   
     const nameRegex = /^[a-zA-Z][a-z]*$/;
     return nameRegex.test(name);
   };
 
   const validateEmail = (email) => {
-   
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
   const validatePassword = (password) => {
-
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   };
@@ -47,13 +44,11 @@ const Register = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
     let valid = true;
     const newErrors = { name: '', email: '', password: '' };
 
- 
     if (!validateName(name)) {
-      newErrors.name = 'Name should start with a letter and contain only lowercase letters afterward. No special characters or numbers allowed.';
+      newErrors.name = 'Name should start with a letter and contain only lowercase letters afterward.';
       valid = false;
     }
 
@@ -73,8 +68,8 @@ const Register = () => {
     }
 
     try {
-      await axios.post('/api/users/register', { name, email, password });
-      navigate('/login'); 
+      await axios.post('http://localhost:5000/users/register', { name, email, password });
+      navigate('/login');
     } catch (error) {
       console.error('Error registering user:', error);
     }
@@ -82,6 +77,7 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      
       <h1>Register</h1>
       <form onSubmit={submitHandler}>
         <div>
@@ -92,11 +88,10 @@ const Register = () => {
             onChange={(e) => {
               const newName = e.target.value;
               setName(newName);
-             
               if (!validateName(newName)) {
                 setErrors((prevErrors) => ({
                   ...prevErrors,
-                  name: 'Name should start with a letter and contain only lowercase letters afterward. No special characters or numbers allowed.',
+                  name: 'Name should start with a letter and contain only lowercase letters afterward.',
                 }));
               } else {
                 setErrors((prevErrors) => ({
@@ -107,7 +102,7 @@ const Register = () => {
             }}
             required
           />
-           {errors.name && <p className="error">{errors.name}</p>}
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div>
           <label>Email</label>
@@ -131,7 +126,7 @@ const Register = () => {
             }}
             required
           />
-           {errors.email && <p className="error">{errors.email}</p>}
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
         <div>
           <label>Password</label>
@@ -145,7 +140,7 @@ const Register = () => {
             }}
             required
           />
-           <p className={passwordStrength === 'Password is strong' ? 'password-strength' : 'error'}>
+          <p className={passwordStrength === 'Password is strong' ? 'password-strength' : 'error'}>
             {passwordStrength}
           </p>
           {errors.password && <p className="error">{errors.password}</p>}

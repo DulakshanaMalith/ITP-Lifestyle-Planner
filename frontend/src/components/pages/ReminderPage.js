@@ -1,7 +1,7 @@
 // src/pages/ReminderPage.js
 import React from 'react';
-import Nav from '../AutoAssist/Nav';
-import Footer from '../AutoAssist/Footer';
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import ReminderForm from '../AutoAssist/ReminderForm';
 import ReminderList from '../AutoAssist/ReminderList';
 import '../AutoAssist/vehicleform.css'

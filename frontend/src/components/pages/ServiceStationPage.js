@@ -1,8 +1,8 @@
 // src/pages/ServiceStationPage.js
 import React from 'react';
-import Nav from '../AutoAssist/Nav';
+import Nav from '../Nav/Nav';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../AutoAssist/Footer';
+import Footer from '../Footer/Footer';
 import ServiceStationForm from '../AutoAssist/ServiceStationForm';
 import ServiceStationList from '../AutoAssist/ServiceStationList';
 

@@ -34,6 +34,7 @@ import './App.css';
 import './components/AutoAssist/App.css'
 import ReminderForm from './components/AutoAssist/ReminderForm.js';
 
+<<<<<<< HEAD
 //event planner
 import EHome from './components/eventPlanner/EventPlannerHome/EventPlannerHome';
 import EventsHome from './components/eventPlanner/Event/EventHome';
@@ -51,6 +52,14 @@ import GuestList from './components/eventPlanner/GuestList/GuestList';
 import UpdateGuest from './components/eventPlanner/GuestList/UpdateGuest';
 import Invitation from './components/eventPlanner/GuestList/Invitation';
 
+=======
+import Allcard from './financeGuard/layout/Content/Content';
+import Stat from './financeGuard/components/StatisticsChart/StatisticsChart'
+import GP from './financeGuard/components/GoalProgress/GoalProgress'
+import IncomeCalendar from './financeGuard/components/IncomeCalendar/IncomeCalendar';
+import Netincome from './financeGuard/components/netincome/netincome';
+import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
+>>>>>>> main
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
@@ -137,6 +146,21 @@ function App() {
           <Route path="/dashboard" element={<HealthDataDashboard/>} />
 
 
+<<<<<<< HEAD
+=======
+           
+
+        
+
+
+          {/*Financeguard routes*/}
+          <Route path="/incomemainconteiner" element={<Incomemainconteiner />} />
+          <Route path="/allincome" element={<Allcard />} />
+        <Route path="/stat" element={<Stat />} />
+        <Route path="/gp" element={<GP />} /> 
+        <Route path="/incomecalendar" element={<IncomeCalendar />} /> 
+        <Route path="/netincome" element={<Netincome />} /> 
+>>>>>>> main
 
 
        
