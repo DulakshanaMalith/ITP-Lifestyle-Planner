@@ -40,7 +40,7 @@ const GiftOptions = () => {
 
 
             <a
-            href="https://www.kapruka.com/?srsltid=AfmBOoq7icw2cCv64ReWcKA1Dab_a-zhuno5GKzf-wNCOYcJPfmvSPIP"
+            href="http://localhost:3000/Ms"
             target="_blank"
             rel="noopener noreferrer"
           >

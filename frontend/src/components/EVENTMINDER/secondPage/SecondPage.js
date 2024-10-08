@@ -29,6 +29,10 @@ function SecondPage() {
   const handleNavigateToOtherSpecialDays = () => {
     navigate("/otherday");
   };
+  const handleNavigateToList = () => {
+    navigate("/occationsmart");
+  };
+
 
   return (
     <div>
@@ -54,6 +58,9 @@ function SecondPage() {
                 </button>
                 <button onClick={handleNavigateToOtherSpecialDays}>
                   Other Special Days
+                </button>{" "}
+                 <button onClick={handleNavigateToList}>
+                  Create List
                 </button>{" "}
               </div>
             </div>

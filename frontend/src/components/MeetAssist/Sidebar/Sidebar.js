@@ -28,8 +28,8 @@ function Sidebar({ isOpen, toggleSidebar }) {
                         <li onClick={() => { navigate('/get-direction'); toggleSidebar(); }}>
                             <FaMapMarkerAlt /> Location
                         </li>
-                        <li onClick={() => { navigate('/reminders'); toggleSidebar(); }}>
-                            <FaBell /> Reminders
+                        <li onClick={() => { navigate('/meetingssmart'); toggleSidebar(); }}>
+                            <FaBell />List
                         </li>
                     </ul>
                 </>
