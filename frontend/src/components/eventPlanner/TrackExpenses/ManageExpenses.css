@@ -108,6 +108,7 @@
 .addexpenses-icons-container {
   display: flex;
   align-items: center;
+ 
 }
 
 .addexpenses-edit-icon,
@@ -116,16 +117,19 @@
   margin-left: 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1.25rem; 
+  font-size: 2rem; 
+
 }
 
 .addexpenses-edit-icon {
   color: #273f67;
   background-color: #F0F0F0;
+  
 }
 
 .addexpenses-edit-icon:hover {
   color: #1a2d4e;
+  
 }
 
 .addexpenses-delete-icon {

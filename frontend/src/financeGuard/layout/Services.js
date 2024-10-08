@@ -24,15 +24,15 @@ const Services = () => {
   ];
 
   return (
-    <section className="services-section">
+    <section className="services-section-income">
       <h2>SUMMARY</h2>
       <h3>
-      QUICK OVERVIEW OF THE<span className="highlight"> FINANCIAL PERFORMANCE</span>
+      QUICK OVERVIEW OF THE<span className="highlight-income"> FINANCIAL PERFORMANCE</span>
       </h3>
-      <div className="services-container">
+      <div className="services-container-income">
         {services.map((service, index) => (
-          <div className="service-card" key={index}>
-            <div className="component-container">
+          <div className="service-card-income" key={index}>
+            <div className="component-container-income">
              
               {service.component}
             </div>
