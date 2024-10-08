@@ -3,14 +3,18 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Dashboard from './components/Dashboard/Dashboard';
-import MeetHome from './components/MeetAssist/MeetHome/MeetHome';
-import AddNewMeeting from './components/MeetAssist/AddNewMeeting/AddNewMeeting';
-import UpcomingMeet from './components/MeetAssist/UpcomingMeet/UpcomingMeet';
-import ShowAMeet from './components/MeetAssist/ShowAMeet/ShowAMeet';
-import ChangeMeet from './components/MeetAssist/ChangeMeet/ChangeMeet';
-import MeetSchedule from './components/MeetAssist/MeetSchedule/MeetSchedule';
+import Dashboard from './maindash/home/HomePage.js';
 
+import Maindashboard from './pages/Dashboard';
+
+
+import MeetHome from "./components/MeetAssist/MeetHome/MeetHome";
+import AddNewMeeting from "./components/MeetAssist/AddNewMeeting/AddNewMeeting";
+import UpcomingMeet from "./components/MeetAssist/UpcomingMeet/UpcomingMeet";
+import ShowAMeet from "./components/MeetAssist/ShowAMeet/ShowAMeet";
+import ChangeMeet from "./components/MeetAssist/ChangeMeet/ChangeMeet";
+import MeetSchedule from "./components/MeetAssist/MeetSchedule/MeetSchedule";
+import TimeTable from "./components/MeetAssist/TimeTable/TimeTable";
 
 // import Nav from './components/AutoAssist/Nav.js';
 // import Footer from './components/AutoAssist/Footer';
@@ -110,8 +114,9 @@ function App() {
      
       
         <Routes>
-          <Route path="/" element={< Dashboard />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={< Maindashboard />} />
+          <Route path="/login" element={<Login />} /> 
+          <Route path="/maindashboard" element={<Dashboard />} />          
           <Route path="/register" element={<Register />} /> 
 
           <Route path="/autoAssist" element={<Home />} />
@@ -140,9 +145,9 @@ function App() {
           <Route path="/upcoming-meetings" element={<UpcomingMeet/>}></Route>
           <Route path="/meeting/:id" element={<ShowAMeet/>}></Route>
           <Route path="/edit-meeting/:id" element={<ChangeMeet/>}></Route>
-          <Route path="/schedule" element={<MeetSchedule/>}></Route>
-          
-          
+          <Route path="/schedule" element={<MeetSchedule/>}></Route>     
+          <Route path="/get-direction" element={<Ms/>}></Route>     
+          <Route path="/timetable/:date" element={<TimeTable/>}></Route>
 
 
 
