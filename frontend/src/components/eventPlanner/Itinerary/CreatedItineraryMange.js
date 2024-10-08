@@ -114,7 +114,7 @@ const CreatedItineraryMange = () => {
                 <h3 className="itinerary-name">{itinerary.name}</h3>
                 <p className="itinerary-event">Event: {itinerary.eventId?.name || 'Event name not available'}</p>
                 <button className="plan-more-button" onClick={() => handlePlanMore(itinerary)}>Plan More</button>
-                <button className="delete-button" onClick={() => handleDelete(itinerary._id)}>Delete</button>
+                <button className="itenarydelete-button" onClick={() => handleDelete(itinerary._id)}>Delete</button>
               </div>
             ))
           )}
