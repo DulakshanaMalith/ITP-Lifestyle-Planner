@@ -51,6 +51,21 @@ import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incom
 
 
 
+import Services from "./components/Services";
+import AddReminder from './components/AddReminder';
+import ReminderList from './components/ReminderList';
+import UpdateReminder from './components/UpdateReminder';
+import HealthDataAdd from "./components/HealthDataAdd";
+import HealthDataView from "./components/HealthDataView";
+import UpdateHealthData from "./components/UpdateHealthData";
+import HealthDataDashboard from "./components/HealthDataDashboard";
+import HomePage from "./components/HomePage";
+import EmergencyContacts from "./components/EmergencyContacts";
+import DoctorAppointments from "./components/DoctorAppointments";
+import OrderPrescription from "./components/PrescriptionOrder";
+import PatientCare from "./components/PatientCare"; 
+
+
 //shop Smart
 import AddingMeeting from './components/shopSmart/AddMeeting.js';
 import AddingOccasion from './components/shopSmart/AddOccasion';
@@ -71,6 +86,7 @@ import CardList from './PayTrack/components/CardList';
 import Paymenthome from './PayTrack/pages/paymenthome';
 import Cardetails from './PayTrack/pages/Cardetails';
 import PayTrackHome from './PayTrack/components/PayTrackHome';
+
 
 
 
@@ -189,6 +205,24 @@ function App() {
         <Route path="/editguest/:id" element={<UpdateGuest />} />
         <Route path="/sendinvitation/:id" element={<Invitation />} />
 
+
+
+
+        <Route path="/helthmatehome" element={<HomePage />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+            <Route path="/doctor-appointments" element={<DoctorAppointments />} />
+            <Route path="/prescription-order" element={<OrderPrescription />} />
+            <Route path="/remainderlist" element={<ReminderList />} />
+            <Route path="/add" element={<AddReminder />} />
+            <Route path="/update/:id" element={<UpdateReminder />} />
+
+            <Route path="/addhealthdata" element={<HealthDataAdd />} />
+            <Route path="/viewhealthdata" element={<HealthDataView />} />
+            <Route path="/updatehealthdata/:id" element={<UpdateHealthData />} />
+            <Route path="/dashboard" element={<HealthDataDashboard />} />
+            <Route path="/patient-care" element={<PatientCare />} />
+
            {/* shop Smart*/}
         <Route path="/shopsmart" element={<ShopSmart />} />
         <Route path="/meetingssmart" element={<AddingMeeting />} />
@@ -198,6 +232,7 @@ function App() {
         <Route path="/eventsmart" element={<AddingEvent />} />
         <Route path="/medicalsmart" element={<AddingMedical />} />
         <Route path="/Ms" element={<Ms />} />
+
 
         </Routes>
       </div>
