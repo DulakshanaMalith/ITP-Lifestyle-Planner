@@ -21,6 +21,50 @@ const ViweBday = () => {
     const [token, setToken] = useState(null);
     const [userId, setUserId] = useState(null);
 
+
+    useEffect(() => {
+        const fetchRemindersByName = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await axios.get(`http://localhost:5000/eventMind/getreminders?event=Birthdays&name=${searchTerm}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Include the token in the headers
+                    },
+                });
+                setReminders(response.data);
+            } catch (error) {
+                setError("Failed to fetch reminders. Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        const fetchRemindersByDate = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await axios.get(`http://localhost:5000/eventMind/getreminders?date=${selectedDate}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setReminders(response.data);
+            } catch (error) {
+                setError("Failed to fetch reminders. Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        };
+    
+        if (searchTerm.trim() !== "") {
+            fetchRemindersByName(); // Fetch reminders by name when search term is not empty
+        } else {
+            fetchRemindersByDate(); // Fetch reminders by selected date when search term is empty
+        }
+    }, [searchTerm, selectedDate]); // Fetch when searchTerm or selectedDate changes
+    
+
     useEffect(() => {
         fetchReminders(selectedDate);
     }, [selectedDate]);

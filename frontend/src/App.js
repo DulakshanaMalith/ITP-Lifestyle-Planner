@@ -93,6 +93,10 @@ import PayTrackHome from './PayTrack/components/PayTrackHome';
 
 
 
+
+
+
+
 //EVENTMINDER
 import Main from './components/EVENTMINDER/Mainpage/Main.js';
 import SecondPage from './components/EVENTMINDER/secondPage/SecondPage.js';
@@ -107,6 +111,12 @@ import ViewOtherSpecialDays from './components/EVENTMINDER/viwe/ViewOtherSpecial
 import AddSpecialDayForm from './components/EVENTMINDER/add/AddSpecialDayForm.js';
 import SendWishAndGift from './components/EVENTMINDER/Giftandwish/SendWishAndGift.js';
 import GiftOptions from './components/EVENTMINDER/Giftandwish/GiftOptions.js';
+
+
+
+
+
+
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
@@ -251,6 +261,12 @@ function App() {
         <Route path="/eventsmart" element={<AddingEvent />} />
         <Route path="/medicalsmart" element={<AddingMedical />} />
         <Route path="/Ms" element={<Ms />} />
+
+
+
+
+
+
 
  {/* EVENTMINDER*/}
 

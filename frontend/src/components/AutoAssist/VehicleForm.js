@@ -20,6 +20,12 @@ const VehicleForm = ({ saveVehicle, currentVehicle }) => {
         licenseExpirationDate: '',
     });
 
+    // Get today's date in 'YYYY-MM-DD' format
+    const getTodayDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
+    };
+
     // Load current vehicle data into the form if available
     useEffect(() => {
         if (currentVehicle) {
@@ -39,7 +45,7 @@ const VehicleForm = ({ saveVehicle, currentVehicle }) => {
         return '';
     };
 
-    // Validation for dates (should not be in the future)
+    // Validation for last service date (should not be in the future)
     const validateDate = (date) => {
         const today = new Date();
         today.setHours(0, 0, 0, 0); // Set time to 00:00:00 for date-only comparison
@@ -139,6 +145,7 @@ const VehicleForm = ({ saveVehicle, currentVehicle }) => {
                     value={lastServiceDate} 
                     onChange={handleLastServiceDateChange} 
                     required 
+                    max={getTodayDate()}  // Allow only past dates up to today
                 />
                 {errors.lastServiceDate && <p className="error">{errors.lastServiceDate}</p>}
             </label>

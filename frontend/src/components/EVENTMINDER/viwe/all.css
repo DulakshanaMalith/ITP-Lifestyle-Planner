@@ -52,6 +52,7 @@
     max-width: 450px; /* Adjust the maximum width of the calendar */
     font-size: 0.9em; 
     margin-bottom: 2%;
+    margin: auto;
 }
 
 .react-calendar__navigation {
