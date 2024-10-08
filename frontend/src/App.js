@@ -50,7 +50,7 @@ import Netincome from './financeGuard/components/netincome/netincome';
 import Incomemainconteiner from './financeGuard/layout/incomemainconteiner/incomemainconteiner'
 
 
-<<<<<<< HEAD
+
 import Services from "./components/Services";
 import AddReminder from './components/AddReminder';
 import ReminderList from './components/ReminderList';
@@ -64,7 +64,7 @@ import EmergencyContacts from "./components/EmergencyContacts";
 import DoctorAppointments from "./components/DoctorAppointments";
 import OrderPrescription from "./components/PrescriptionOrder";
 import PatientCare from "./components/PatientCare"; 
-=======
+
 
 //shop Smart
 import AddingMeeting from './components/shopSmart/AddMeeting.js';
@@ -88,7 +88,7 @@ import Cardetails from './PayTrack/pages/Cardetails';
 import PayTrackHome from './PayTrack/components/PayTrackHome';
 
 
->>>>>>> main
+
 
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
@@ -205,7 +205,7 @@ function App() {
         <Route path="/editguest/:id" element={<UpdateGuest />} />
         <Route path="/sendinvitation/:id" element={<Invitation />} />
 
-<<<<<<< HEAD
+
 
 
         <Route path="/helthmatehome" element={<HomePage />} />
@@ -222,7 +222,7 @@ function App() {
             <Route path="/updatehealthdata/:id" element={<UpdateHealthData />} />
             <Route path="/dashboard" element={<HealthDataDashboard />} />
             <Route path="/patient-care" element={<PatientCare />} />
-=======
+
            {/* shop Smart*/}
         <Route path="/shopsmart" element={<ShopSmart />} />
         <Route path="/meetingssmart" element={<AddingMeeting />} />
@@ -232,7 +232,7 @@ function App() {
         <Route path="/eventsmart" element={<AddingEvent />} />
         <Route path="/medicalsmart" element={<AddingMedical />} />
         <Route path="/Ms" element={<Ms />} />
->>>>>>> main
+
 
         </Routes>
       </div>
