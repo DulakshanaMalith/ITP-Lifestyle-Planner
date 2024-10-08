@@ -14,6 +14,7 @@ const ReminderForm = ({ saveReminder, vehicles = [], currentReminder, selectedSe
 
   const [errors, setErrors] = useState({
     date: '',
+    email: ''
   });
 
   const navigate = useNavigate();
@@ -31,17 +32,17 @@ const ReminderForm = ({ saveReminder, vehicles = [], currentReminder, selectedSe
     }
   }, [currentReminder]);
 
-  // Validation for date to check if it's not in the past
+  // Validation for date to ensure it's today or future
   const validateDate = (inputDate) => {
     const today = new Date();
     const selectedDate = new Date(inputDate);
-    
+
     // Reset the time portion for comparison purposes
     today.setHours(0, 0, 0, 0);
     selectedDate.setHours(0, 0, 0, 0);
-    
+
     if (selectedDate < today) {
-      return 'Reminder Date Cannot Be In The Past';
+      return 'Reminder date cannot be in the past. Please select today or a future date.';
     }
     return '';
   };
@@ -101,88 +102,92 @@ const ReminderForm = ({ saveReminder, vehicles = [], currentReminder, selectedSe
     setLocation('');
     setCost('');
     setNotes('');
-    setErrors({ date: '',email:'' });
+    setErrors({ date: '', email: '' });
   };
+
+  // Get today's date in YYYY-MM-DD format to set as min date
+  const todayDate = new Date().toISOString().split('T')[0];
 
   return (
     <div className='vehicleform'>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Vehicle Name:
-        <select value={vehicleName} onChange={(e) => setVehicleName(e.target.value)} required>
-          <option value="">Select a vehicle</option>
-          {vehicles.length > 0 ? (
-            vehicles.map((vehicle) => (
-              <option key={vehicle._id} value={vehicle._id}>
-                {vehicle.brand} {vehicle.model}
-              </option>
-            ))
-          ) : (
-            <option value="">No vehicles available</option>
-          )}
-        </select>
-      </label>
-      <label>
-        Reminder Type:
-        <select value={reminderType} onChange={(e) => setReminderType(e.target.value)} required>
-          <option value="">Select a reminder type</option>
-          <option value="Service Reminder">Service Reminder</option>
-          <option value="License Renewal">License Renewal</option>
-        </select>
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-          className='input'
-        />
-        {errors.email && <p className="error">{errors.email}</p>}
-      </label>
-      <label>
-        Date:
-        <input
-          type="date"
-          value={date}
-          onChange={handleDateChange}
-          required
-        />
-        {errors.date && <p className="error">{errors.date}</p>}
-      </label>
-      <label>
-        Appointed Time:
-        <input
-          type="time"
-          value={appointedTime}
-          onChange={(e) => setAppointedTime(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Location:
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          required
-        />
-        <button className="main-button1" type="button" onClick={() => navigate('/service-stations')}>
-          Select Service Station
-        </button>
-      </label>
-      <label>
-        Estimated cost:
-        <input
-          type="number"
-          value={cost}
-          onChange={(e) => setCost(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Save Reminder</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Vehicle Name:
+          <select value={vehicleName} onChange={(e) => setVehicleName(e.target.value)} required>
+            <option value="">Select a vehicle</option>
+            {vehicles.length > 0 ? (
+              vehicles.map((vehicle) => (
+                <option key={vehicle._id} value={vehicle._id}>
+                  {vehicle.brand} {vehicle.model}
+                </option>
+              ))
+            ) : (
+              <option value="">No vehicles available</option>
+            )}
+          </select>
+        </label>
+        <label>
+          Reminder Type:
+          <select value={reminderType} onChange={(e) => setReminderType(e.target.value)} required>
+            <option value="">Select a reminder type</option>
+            <option value="Service Reminder">Service Reminder</option>
+            <option value="License Renewal">License Renewal</option>
+          </select>
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+            className='input'
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+        </label>
+        <label>
+          Date:
+          <input
+            type="date"
+            value={date}
+            onChange={handleDateChange}
+            required
+            min={todayDate} // Prevents selecting past dates
+          />
+          {errors.date && <p className="error">{errors.date}</p>}
+        </label>
+        <label>
+          Appointed Time:
+          <input
+            type="time"
+            value={appointedTime}
+            onChange={(e) => setAppointedTime(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Location:
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            required
+          />
+          <button className="main-button1" type="button" onClick={() => navigate('/service-stations')}>
+            Select Service Station
+          </button>
+        </label>
+        <label>
+          Estimated cost:
+          <input
+            type="number"
+            value={cost}
+            onChange={(e) => setCost(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Save Reminder</button>
+      </form>
     </div>
   );
 };
