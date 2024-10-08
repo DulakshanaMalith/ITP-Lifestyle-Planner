@@ -18,9 +18,8 @@ scheduleReminderJob();
 const userRoutes = require('./routes/userRoutes');
 
 //meet-assist
-const router=require("./routes/MeetAssistRoutes");
+const router=require("./routes/1MeetAssistRoutes");
 const meetSheduleRoutes = require('./routes/MeetSheduleRoute');
-
 //auto-assist
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');

@@ -4,7 +4,8 @@ import AddCard from '../components/AddCard';
 import CardList from '../components/CardList';
 import './Cardetails.css'; // Import the CSS file for styling
 import IncomeSideMenu from '../pages/IncomeSideMenu';
-
+import Footer from '../../components/Footer/Footer';
+import Nav from '../../components/Nav/Nav';
 function Cardetails() {
   const [userName, setUserName] = useState('');
   const [currentDate, setCurrentDate] = useState('');
@@ -41,7 +42,7 @@ function Cardetails() {
       <IncomeSideMenu />
       
     <div className='cardmain'>
-    
+    <Nav/>
       <div className='sectioncard'>
         <p>
           <strong>{`HELLO ${userName.toUpperCase()}`}</strong>
@@ -57,7 +58,7 @@ function Cardetails() {
         </div>
     
       </div>
-     
+     <Footer/>
     </div>
     
     </div>

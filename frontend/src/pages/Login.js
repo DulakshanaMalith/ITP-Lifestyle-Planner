@@ -17,7 +17,7 @@ const Login = () => {
     try {
       const { data } = await axios.post('http://localhost:5000/users/login', { name, password });
       localStorage.setItem('token', data.token);
-      navigate('/'); 
+      navigate('/maindashboard'); 
     } catch (error) {
       console.error('Error logging in:', error);
       setError('Invalid User Name or password. Please try again.'); 
