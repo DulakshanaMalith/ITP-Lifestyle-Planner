@@ -51,7 +51,6 @@
 .react-calendar {
     max-width: 450px; /* Adjust the maximum width of the calendar */
     font-size: 0.9em; 
-    margin-left: 32%;
     margin-bottom: 2%;
 }
 
@@ -61,7 +60,7 @@
 
 .react-calendar__navigation__label {
     font-weight: bold; /* Bold navigation label */
-    color: #ebecee;/* Blue color for navigation label */
+    color: #1d3a65;/* Blue color for navigation label */
 }
 
 .react-calendar__navigation__arrow {
@@ -78,8 +77,8 @@ button {
     background-color: #1d3a65; /* Button background color */
     border: 0; /* No border */
     border-radius: 3px; /* Rounded corners */
-    color: white; /* Text color */
     padding: 5px 0; /* Padding for buttons */
+    
 }
 
 button:hover {
