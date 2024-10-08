@@ -90,7 +90,7 @@ import PayTrackHome from './PayTrack/components/PayTrackHome';
 
 
 
-<<<<<<< HEAD
+
 //EVENTMINDER
 import Main from './components/EVENTMINDER/Mainpage/Main.js';
 import SecondPage from './components/EVENTMINDER/secondPage/SecondPage.js';
@@ -109,8 +109,7 @@ import GiftOptions from './components/EVENTMINDER/Giftandwish/GiftOptions.js';
 
 
 
-=======
->>>>>>> main
+
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -255,7 +254,7 @@ function App() {
         <Route path="/Ms" element={<Ms />} />
 
 
-<<<<<<< HEAD
+
 
 
  {/* EVENTMINDER*/}
@@ -289,8 +288,7 @@ function App() {
 <Route path="/sendwishandgift" element={<SendWishAndGift/>} /> 
 <Route path="/gift-options" element={<GiftOptions/>} /> 
 
-=======
->>>>>>> main
+
         </Routes>
       </div>
     </Router>
