@@ -9,6 +9,8 @@ import PayAddReminder from '../components/payAddReminder';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import jsPDF autotable plugin
 import IncomeSideMenu from './IncomeSideMenu'; // Import the side menu component
+import Footer from '../../components/Footer/Footer';
+import Nav from '../../components/Nav/Nav';
 function PaymentHome() {
   const [userName, setUserName] = useState('');
   const [currentDate, setCurrentDate] = useState('');
@@ -87,7 +89,7 @@ function PaymentHome() {
 
   return (
     <div>
-     
+     <Nav/>
     <div className="paymenthomecontainer">
   <IncomeSideMenu className="side-menu" /> 
   <div className="main-content-payment">
@@ -123,7 +125,7 @@ function PaymentHome() {
   
   </div>
 </div>
-
+<Footer/>
 </div>
   );
 }
