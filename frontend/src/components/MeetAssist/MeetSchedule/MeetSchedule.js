@@ -2,19 +2,53 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MeetNav from '../../Nav/Nav';
 import Footer from '../../Footer/Footer';
-import axios from 'axios';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-const URL = "http://localhost:5000/meet";
-const TimetableURL = "http://localhost:5000/meetShedule/schedules";
-
 const fetchMeetingsHandler = async () => {
-  return await axios.get(URL).then((res) => res.data);
+  const token = localStorage.getItem('token'); // Get token from localStorage
+
+  if (!token) {
+    throw new Error("No token found");
+  }
+
+  const response = await fetch('http://localhost:5000/meet', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, // Include token in Authorization header
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch meetings');
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 const fetchTimetablesHandler = async () => {
-  return await axios.get(TimetableURL).then((res) => res.data);
+  const token = localStorage.getItem('token'); // Get token
+
+  if (!token) {
+    throw new Error("No token found");
+  }
+
+  const response = await fetch('http://localhost:5000/meetShedule/schedules', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`, // Include token in Authorization header
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch timetables');
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 function MeetSchedule() {
@@ -23,140 +57,141 @@ function MeetSchedule() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchMeetingsHandler().then((data) => {
-      setMeetings(data.meetings);
-    });
+    const fetchData = async () => {
+      try {
+        const meetingsData = await fetchMeetingsHandler();
+        setMeetings(meetingsData.meetings || []);
 
-    fetchTimetablesHandler().then((data) => {
-      setTimetables(data);
-    });
+        const timetablesData = await fetchTimetablesHandler();
+        setTimetables(timetablesData || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const today = new Date(); 
-
-  const tileClassName = ({ date }) => {
-    const meetingDates = meetings
-      .filter((meeting) => {
-        const meetingDate = new Date(meeting.date);
-        meetingDate.setHours(0, 0, 0, 0); 
-        return meetingDate >= today;
-      })
-      .map((meeting) => new Date(meeting.date).setHours(0, 0, 0, 0)); 
+  const tileClassName = ({ date, view }) => {
+    if (view !== 'month') return ''; // Only apply to month view
   
-    const timetableDates = timetables
-      .filter((timetable) => {
-        const timetableDate = new Date(timetable.date);
-        timetableDate.setHours(0, 0, 0, 0); 
-        return timetableDate >= today;
-      })
-      .map((timetable) => new Date(timetable.date).setHours(0, 0, 0, 0));
+    // Normalize date to UTC before formatting it as YYYY-MM-DD
+    const formattedDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString().split('T')[0];
   
-    const currentDate = new Date(date).setHours(0, 0, 0, 0); 
+    const meetingDates = new Set(meetings.map(meeting => {
+      // Convert meeting date to UTC before comparing
+      const meetingDate = new Date(meeting.date);
+      return new Date(Date.UTC(meetingDate.getFullYear(), meetingDate.getMonth(), meetingDate.getDate())).toISOString().split('T')[0];
+    }));
   
-    if (meetingDates.includes(currentDate) && timetableDates.includes(currentDate)) {
-      return 'highlight-pink';
-    } else if (meetingDates.includes(currentDate)) {
-      return 'highlight-red';
-    } else if (timetableDates.includes(currentDate)) {
-      return 'highlight-green';
+    const timetableDates = new Set(timetables.map(timetable => {
+      // Convert timetable date to UTC before comparing
+      const timetableDate = new Date(timetable.date);
+      return new Date(Date.UTC(timetableDate.getFullYear(), timetableDate.getMonth(), timetableDate.getDate())).toISOString().split('T')[0];
+    }));
+  
+    const isMeetingDay = meetingDates.has(formattedDate);
+    const isTimetableDay = timetableDates.has(formattedDate);
+  
+    if (isMeetingDay && isTimetableDay) {
+      return 'highlight-pink'; // Both meeting and timetable
+    } else if (isMeetingDay) {
+      return 'highlight-red'; // Only meeting
+    } else if (isTimetableDay) {
+      return 'highlight-green'; // Only timetable
     }
   
-    return '';
+    return ''; // No highlight
   };
   
   const onDayClick = (value) => {
-    // Format the selected date as YYYY-MM-DD
-    const selectedDate = value.toLocaleDateString('en-CA'); // 'en-CA' gives us the format YYYY-MM-DD
-    navigate(`/timetable/${selectedDate}`); // Pass the date as a simple string
+    const selectedDate = value.toLocaleDateString('en-CA'); // Format as YYYY-MM-DD using local time
+    navigate(`/timetable/${selectedDate}`);
   };
+  
   return (
     <div>
       <MeetNav />
-      <div>
-      <div className="calendar-container">
+      <div className="calendar-container-ma">
         <h1>Make Schedule</h1>
-
         <Calendar
           tileClassName={tileClassName}
           onClickDay={onDayClick}
         />
-        <div className="legend-bar">
-          <div className="legend-item">
-            <span className="legend-color red"></span> Red: Future Meetings
+        <div className="legend-bar-ma">
+          <div className="legend-item-ma">
+            <span className="legend-color-ma red"></span> Red: Future Meetings
           </div>
           <div className="legend-item">
-            <span className="legend-color green"></span> Green: Timetable Exists
+            <span className="legend-color-ma green"></span> Green: Timetable Exists
           </div>
           <div className="legend-item">
-            <span className="legend-color pink"></span> Pink: Both Meeting and Timetable
+            <span className="legend-color-ma pink"></span> Pink: Both Meeting and Timetable
           </div>
-          </div>
-          
         </div>
-        <Footer />
-
-        <style>{`
-          .calendar-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-          }
-
-          .react-calendar {
-            width: 50%;
-            max-width: 500px;
-          }
-
-          .highlight-red {
-            background-color: red !important;
-            color: white;
-          }
-
-          .highlight-green {
-            background-color: green !important;
-            color: white;
-          }
-
-          .highlight-pink {
-            background-color: pink !important;
-            color: white;
-          }
-
-          .legend-bar {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-          }
-
-          .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-          }
-
-          .legend-color {
-            width: 20px;
-            height: 20px;
-            display: inline-block;
-          }
-
-          .legend-color.red {
-            background-color: red;
-          }
-
-          .legend-color.green {
-            background-color: green;
-          }
-
-          .legend-color.pink {
-            background-color: pink;
-          }
-        `}</style>
       </div>
+      <Footer />
+      <style>{`
+        .calendar-container-ma {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+
+        .react-calendar {
+          width: 50%;
+          max-width: 500px;
+        }
+
+        .highlight-red {
+          background-color: red !important;
+          color: white;
+        }
+
+        .highlight-green {
+          background-color: green !important;
+          color: white;
+        }
+
+        .highlight-pink {
+          background-color: pink !important;
+          color: black;
+        }
+
+        .legend-bar-ma {
+          margin-top: 20px;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        .legend-item-ma {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+        }
+
+        .legend-color-ma {
+          width: 20px;
+          height: 20px;
+          display: inline-block;
+        }
+
+        .legend-color-ma.red {
+          background-color: red;
+        }
+
+        .legend-color-ma.green {
+          background-color: green;
+        }
+
+        .legend-color-ma.pink {
+          background-color: pink;
+        }
+      `}</style>
     </div>
   );
 }
