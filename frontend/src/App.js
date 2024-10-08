@@ -90,6 +90,27 @@ import PayTrackHome from './PayTrack/components/PayTrackHome';
 
 
 
+<<<<<<< HEAD
+//EVENTMINDER
+import Main from './components/EVENTMINDER/Mainpage/Main.js';
+import SecondPage from './components/EVENTMINDER/secondPage/SecondPage.js';
+import Bdays from './components/EVENTMINDER/birthday/bdays.js';
+import ViweBday from './components/EVENTMINDER/viwe/ViweBday.js';
+import Anniversaries from './components/EVENTMINDER/anniversaries/Anniversaries.js';
+import ViewAnniversaries from './components/EVENTMINDER/viwe/ViewAnniversaries.js';
+import Mdates from './components/EVENTMINDER/mdates/Mdates.js';
+import ViewMemorialDay from './components/EVENTMINDER/viwe/ViewMemorialDay.js';
+import Otherday from './components/EVENTMINDER/otherSpecialDays/Otherday.js';
+import ViewOtherSpecialDays from './components/EVENTMINDER/viwe/ViewOtherSpecialDays.js';
+import AddSpecialDayForm from './components/EVENTMINDER/add/AddSpecialDayForm.js';
+import SendWishAndGift from './components/EVENTMINDER/Giftandwish/SendWishAndGift.js';
+import GiftOptions from './components/EVENTMINDER/Giftandwish/GiftOptions.js';
+
+
+
+
+=======
+>>>>>>> main
 //import IncomeList from './pages/IncomeList'; 
 //import EditIncome from './pages/EditIncome'; 
 //import Home from './pages/Home'; 
@@ -234,6 +255,42 @@ function App() {
         <Route path="/Ms" element={<Ms />} />
 
 
+<<<<<<< HEAD
+
+
+ {/* EVENTMINDER*/}
+
+         {/* Home/Main page */}
+         <Route path="/event-minder-home" element={<Main />} />
+
+{/* Second page */}
+<Route path="/secondpage" element={<SecondPage/>} />
+
+{/* Birthday-related routes */}
+<Route path="/birthday" element={<Bdays/>} />
+<Route path="/birthday/reminder" element={<ViweBday/>} /> 
+
+{/* Anniversaries-related routes */}
+<Route path="/anniversaries" element={<Anniversaries/>} />
+<Route path="/anniversaries/reminder" element={<ViewAnniversaries/>} />
+
+{/* Memorial dates-related routes */}
+<Route path="/mdates" element={<Mdates/>} />
+<Route path="/mdates/reminder" element={<ViewMemorialDay/>} />
+
+{/* Other special days-related routes */}
+<Route path="/otherday" element={<Otherday/>} />
+<Route path="/otherday/reminder" element={<ViewOtherSpecialDays/>} />
+
+{/* Form to add special days */}
+<Route path="/addspecialday" element={<AddSpecialDayForm/>} />
+
+{/* Sending wishes and gift options */}
+<Route path="/sendwishandgift" element={<SendWishAndGift/>} /> 
+<Route path="/gift-options" element={<GiftOptions/>} /> 
+
+=======
+>>>>>>> main
         </Routes>
       </div>
     </Router>

@@ -3,6 +3,12 @@ const express = require('express');
 const router = express.Router();
 const reminderController = require('../controllers/eventMinderReminderController');
 
+const { authenticateToken } = require('../middleware/authMiddleware');
+
+
+router.use(authenticateToken);
+
+
 // Route to create a new reminder
 router.post('/reminders', reminderController.createReminder);
 
@@ -25,5 +31,8 @@ router.get('/dateBirthday', reminderController.getRemindersByDateBirthday);
 router.get('/dateAnniversaries', reminderController.getRemindersByDateAnniversaries);
 router.get('/dateMemorialDays', reminderController.getRemindersByDateMemorialDays);
 router.get('/dateOtherSpecialDays', reminderController.getRemindersByDateOtherSpecialDays);
+
+// Define a route for getting all reminders
+router.get('/reminders', reminderController.getAllReminders);
 
 module.exports = router;
